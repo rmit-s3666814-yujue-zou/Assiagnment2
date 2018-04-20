@@ -1,5 +1,10 @@
 interface Relationship {
-    void add();
-    void delete();
-    
+
+    void addRelation(Person person);
+    void getRelation(Person String relation);
+    void printRelation();
+    void deleteRelation();
+
+
+
 }
