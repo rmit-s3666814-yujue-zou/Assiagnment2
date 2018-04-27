@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public abstract class Colleagues implements Relationship {
     private Person person;
     private String relation;
-
     private ArrayList<Colleagues> colleagues= new ArrayList<>();
+
     public Colleagues(Person person, String relation) {
         this.person = person;
     }
@@ -26,7 +26,7 @@ public abstract class Colleagues implements Relationship {
             if(!areColleagues){
                 addRelation(this.person,"colleagues");
             }
-        }
+        } else System.out.println("You are not allowed to be added as classmates");
 
     }
     @Override
