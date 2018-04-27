@@ -3,29 +3,19 @@
  * Write a description of class Children here.
  *
  * @author Jyh-woei Yang
- * @version 20/04/2018
+ * @version 28/04/2018
  */
-public class Children implements Person
+public class Children extends Person
 {
+    // instance variables - replace the example below with your own
+
 
     /**
      * Constructor for objects of class Children
      */
-    public Children()
+    public Children(String name, int age, char gender, String status)
     {
         // initialise instance variables
-
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+        super(name,age,gender,status);
     }
 }
