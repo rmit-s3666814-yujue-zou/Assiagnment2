@@ -20,33 +20,13 @@ public abstract class Colleagues implements Relationship {
             for (Colleagues col : colleagues) {
                 if (col.person.equals(person)) {
                     areColleagues = true;
+                }else{
+                    System.out.println("You are not allowed to be classmates");
                 }
             }
-
             if(!areColleagues){
                 addRelation(this.person,"colleagues");
             }
-        } else System.out.println("You are not allowed to be added as classmates");
-
-    }
-    @Override
-    public void setRelation(String relation){
-        setRelation("colleagues");
-
-    }
-
-    @Override
-    public void getRelation(Person person, String relation) {
-
-    }
-
-    @Override
-    public void printRelation() {
-
-    }
-
-    @Override
-    public void deleteRelation() {
-
+        }
     }
 }

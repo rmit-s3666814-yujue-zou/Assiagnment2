@@ -1,47 +1,31 @@
 import java.util.ArrayList;
 
 public abstract class Couple implements Relationship{
-    private Adults couple;
+    private Adults couple1;
+    private Adults couple2;
     private ArrayList<Children> children = new ArrayList<>();
 
-    public Couple(Adults couple, ArrayList<Children> children) {
-        this.couple = couple;
+
+    public Couple(Adults couple1, Adults couple2, ArrayList<Children> children) {
+        this.couple1 = couple1;
+        this.couple2 = couple2;
         this.children = children;
     }
 
-    public Adults getCouple() {
-        return couple;
-    }
-
-    public ArrayList<Children> getChildren() {
-        return children;
-    }
-
-    @Override
-    public void addRelation(Person person1,Person person2,String relation){
-        person1.setGender('F');
-        if(person2.getGender()=='M'){
-
-        }
-    }
-
-
-    @Override
-    public void addRelation(Person person, String relation) {
-        boolean areCouple = false;
-        if(person instanceof Adults && person.getAge() > 16) {
-            for (Couple cp : couple) {
-                if (cp.person.equals(person)) {
-                    areCouple= true;
+    public void addRelation(Adults couple1,Adults couple2,String relation){
+        boolean areCouple =false;
+        couple1.setGender('F');
+        if(couple2.getGender()=='M'){
+            for (Children child : children) {
+                if(child.equals(this)){
+                    areCouple =true;
+                }else{
+                    System.out.println("You are not allowed to be couple");
                 }
             }
-
-            if(!areFriends){
-                addRelation(this.person,relation);
+            if(!areCouple){
+                addRelation(couple1,couple2,"couple");
             }
         }
-
     }
-
-
 }
