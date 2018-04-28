@@ -24,11 +24,14 @@ public abstract class Friends implements Relationship {
                 for (Friends friends : friends) {
                     if (friends.getPerson().equals(person)) {
                         areFriends = true;
-                    } else if(!areFriends) {
+                    } else {
+                        System.out.println("You are not allowed to be friends");
+                    }
+                    if(!areFriends) {
                         addRelation(this.person, relation);
                     }
                 }
-            }else System.out.println("You are not allowed to be added as friends");
+            }
         }
 
         if(person instanceof Adults && person.getAge() >16){
@@ -37,34 +40,14 @@ public abstract class Friends implements Relationship {
                 if (friends.getPerson().equals(person)) {
                     areFriends = true;
                     addRelation(this.person, relation);
-                }else if(!areFriends){
+                }else {
+                    System.out.println("You are not allowed to be friends");
+                }
+                if(!areFriends){
                     addRelation(this.person,relation);
                 }
-
             }
-        }else System.out.println("You are not allowed to be added as friends");
-    }
-
-
-    @Override
-    public void setRelation(String relation){
-        setRelation("colleagues");
-
-    }
-
-    @Override
-    public void getRelation(Person person, String relation) {
-
-    }
-
-    @Override
-    public void printRelation() {
-
-    }
-
-    @Override
-    public void deleteRelation() {
-
+        }
     }
 }
 

@@ -29,12 +29,14 @@ public abstract class Classmates implements Relationship {
                 for (Classmates cla : classmates) {
                     if (cla.getPerson().equals(person)) {
                         areClassmates = true;
-                    } else  {
-                        System.out.println("You are not classmates");
+                    } else {
+                        System.out.println("You are not allowed to be classmates");
                     }
-                    addRelation(this.person, "classmates");
+                    if (!areClassmates) {
+                        addRelation(this.person, "classmates");
+                    }
                 }
-            }else System.out.println("You are not allowed to be added as classmates");
+            }
         }
 
         if(person instanceof Adults && person.getAge() >16){
@@ -43,11 +45,13 @@ public abstract class Classmates implements Relationship {
                 if (cla.getPerson().equals(person)) {
                     areClassmates = true;
                 }else{
-                    System.out.println("You are not classmates");
+                    System.out.println("You are not allowed to be classmates");
                 }
-                addRelation(this.person, "classmates");
+                if (!areClassmates) {
+                    addRelation(this.person, "classmates");
+                }
             }
-        }else System.out.println("You are not allowed to be added as classmates");
+        }
     }
 }
 
