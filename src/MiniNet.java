@@ -1,5 +1,3 @@
-package javafxtuts;
- 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,8 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class JavaFxTuts extends Application {
-    public JavaFxTuts()
+public class MiniNet extends Application {
+    public MiniNet()
     {
         //Optional constructor
     }
@@ -48,46 +46,47 @@ public class JavaFxTuts extends Application {
 
         // Registering a handler for button
         button.setOnAction((ActionEvent event) -> {
-            // Printing Hello World! to the console
+            // Printing "1) Add a person into the network" to the console
             System.out.println("1) Add a person into the network");
         });
         // Registering a handler for button
         button2.setOnAction((ActionEvent event) -> {
-            // Printing Hello World! to the console
+            // Printing "2) Select a person" to the console
             System.out.println("2) Select a person");
         });
         // Registering a handler for button
         button3.setOnAction((ActionEvent event) -> {
-            // Printing Hello World! to the console
+            // Printing "3) Display the profile") to the console
             System.out.println("3) Display the profile");
         });
         // Registering a handler for button
         button4.setOnAction((ActionEvent event) -> {
-            // Printing Hello World! to the console
+            // Printing "4) Delete the selected person" to the console
             System.out.println("4) Delete the selected person");
         });
         // Registering a handler for button
         button5.setOnAction((ActionEvent event) -> {
-            // Printing Hello World! to the console
+            // Printing "5) Find out whether two people" to the console
             System.out.println("5) Find out whether two people");
         });
         // Registering a handler for button
         button6.setOnAction((ActionEvent event) -> {
-            // Printing Hello World! to the console
+            // Printing "6) Define relation between two people" to the console
             System.out.println("6) Define relation between two people");
         });
         // Registering a handler for button
         button7.setOnAction((ActionEvent event) -> {
-            // Printing Hello World! to the console
+            // Printing "7) Find out the name(s)" to the console
             System.out.println("7) Find out the name(s)");
         });
         // Registering a handler for button
         button8.setOnAction((ActionEvent event) -> {
-            // Printing Hello World! to the console
+            // Printing "8) Exit" to the console
             System.out.println("8) Exit");
+            stop();
         });
         // Initializing the StackPane class
- //       final StackPane root = new StackPane();
+        // final StackPane root = new StackPane();
 
         // Initializing the VBox class
         final VBox root = new VBox();
@@ -99,7 +98,7 @@ public class JavaFxTuts extends Application {
         root.getChildren().addAll(button, button2, button3, button4, button5, button6, button7, button8);
         
         // Creating a scene object
-        final Scene scene = new Scene(root, 300, 250);
+        final Scene scene = new Scene(root, 400, 350);
         // Adding the title to the window (primaryStage)
         primaryStage.setTitle("MiniNet");
         primaryStage.setScene(scene);
@@ -110,6 +109,7 @@ public class JavaFxTuts extends Application {
     @Override
     public void stop()
     {
+        System.exit(0);
         //By default this does nothing
         //It runs if the user clicks the go-away button
         //closing the window or if Platorm.exit() is called.
