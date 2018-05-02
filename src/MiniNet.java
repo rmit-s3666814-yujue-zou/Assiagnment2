@@ -8,9 +8,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MiniNet extends Application {
-    public MiniNet()
+	PeopleDao peopleDao = new PeopleDao();
+	
+	public MiniNet()
     {
         //Optional constructor
+    		peopleDao = new PeopleDao();
     }
     
     @Override
@@ -24,7 +27,10 @@ public class MiniNet extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        // Creating the Java button
+        //Loading data from database
+    		peopleDao.readfile();
+    		
+    		// Creating the Java button
         final Button button = new Button();
         final Button button2 = new Button();
         final Button button3 = new Button();
