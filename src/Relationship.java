@@ -1,8 +1,25 @@
-interface Relationship {
+public class Relationship {
+    private Person person;
+    private String relationship;
 
-    void addRelation(Person person, String relation);
-    void addRelation(Person person1,Person person2,String relation);
-    void setRelation(String relation);
-    void getRelation(Person person, String relation);
+    public Relationship(Person person, String relationship) {
+        this.person = person;
+        this.relationship = relationship;
+    }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public String getRelationship() {
+        return relationship;
+    }
+
+    public void setRelationship(String relationship) {
+        this.relationship = relationship;
+    }
 }
