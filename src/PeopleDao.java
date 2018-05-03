@@ -13,9 +13,13 @@ import java.sql.Statement;
 
 import org.hsqldb.Server;
 
+import java.util.*;
+import java.io.*;
+
  public class PeopleDao 
  {
- 	// instance variables - replace the example below with your own
+ 	// instance variables
+ 	private ArrayList<Person> personList;
 
  	/**
  	 * Constructor for objects of class Driver
@@ -24,8 +28,64 @@ import org.hsqldb.Server;
  	public PeopleDao()
  	{
  		// initialise instance variables
+ 		personList = new ArrayList<Person>();
  	}
 
+	/**
+     * A method to read user from file
+     * 
+     * @param  
+     * @return ArrayList<Person>
+     * @throws FileNotFoundException if file is not found
+     * @throws IOException while exception during I/O actions
+     */
+    public void loadPeopleFile(){
+        
+        String fileName = "People.txt";
+        try{
+            FileReader inputFile = new FileReader(fileName);
+            Scanner console = new Scanner(inputFile);
+            while(console.hasNextLine()){
+                String userString = console.nextLine();
+                String[] details = userString.split(",");
+                Person person = new Person();
+                person.setName(details[0]);
+                person.setAge(convertStringtoInt(details[4]));
+                person.setGender(details[3].charAt(0));
+                person.setStatus(details[2]);
+                personList.add(person);
+                //person.displayPerson();
+            }
+            inputFile.close();
+        }
+        catch(FileNotFoundException exception)
+        {
+            System.out.println(fileName + " not found");
+        }
+        catch(IOException e){
+            System.out.println("Error: Invalid file");
+        }
+    }
+
+    /**
+     * A method to pass result list to view
+     * 
+     * @param  
+     * @return a list of person
+     */
+    public ArrayList<Person> getResultList()
+    {
+    		return personList;
+    }
+    
+	/**
+     * A method to read user from database
+     * 
+     * @param  
+     * @return
+     * @throws SQLException if there is a SQL error
+     * @throws ClassNotFoundException while exception there is no class found
+     */
  	public void readfile() 
  	{
  		Server hsqlServer = null;
@@ -75,12 +135,39 @@ import org.hsqldb.Server;
  			e2.printStackTrace();
  		}
 
- 		}
- 	
+ 	}
 
  	public String addPeople(String insertName, String insertAge, String insertGender, String insertStatus){
 
  		return "insert into people(name,age,gender,status)"+"values ('"+insertName+"','"+insertAge+"','"+insertGender+"','"+insertStatus+"')";
  	}
+
+ 	/**
+     * Method to convert from String to Integer
+     * 
+     * @param a String of input
+     * @return the Integer of out
+     * @throws NumberFormatException if input is a non-number format
+     */
+    private int convertStringtoInt(String input) //method to convert String to Integer
+    {
+        //intialised variables
+        String S = input;
+        int i = 0;
+        //try catch to handle NumberFormatException
+        try
+        {
+            // the String to int conversion happens here
+            i = Integer.parseInt(input.trim());
+
+            // print out the value after the conversion
+            //System.out.println("int i = " + i);
+        }
+        catch (NumberFormatException nfe)
+        {
+            System.out.println("NumberFormatException: " + nfe.getMessage() + ", please input an integer!");
+        }
+        return i;
+    }
 
  } 

@@ -13,6 +13,15 @@ public class Person
    private char gender;
    private String status;
     
+   public Person()
+   {
+       // initialise instance variables in constructor
+       this.name = "";
+       this.age = 0;
+       this.gender = 'M';
+       this.status = "";
+   }
+   
     public Person(String name, int age, char gender, String status)
     {
         // initialise instance variables in constructor
@@ -94,7 +103,7 @@ public class Person
      * @return 
      */
 
-    public void setAge(int Age)
+    public void setAge(int age)
     {
         // put your code here
         this.age = age;
@@ -107,7 +116,7 @@ public class Person
      * @return 
      */
 
-    public void setGender(char Gender)
+    public void setGender(char gender)
     {
         // put your code here
         this.gender = gender;
@@ -120,7 +129,7 @@ public class Person
      * @return
      */
 
-    public void setStatus(String Status)
+    public void setStatus(String status)
     {
         // put your code here
         this.status = status;
