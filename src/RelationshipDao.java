@@ -11,11 +11,11 @@ import java.io.*;
 
 public class RelationshipDao {
 
-    private ArrayList<Relationship> relationshiplist;
+    private ArrayList<Relationship> relationshipList;
 
     public RelationshipDao() {
 
-        relationshiplist = new ArrayList<Relationship>();
+    		relationshipList = new ArrayList<Relationship>();
     }
 
 
@@ -31,8 +31,8 @@ public class RelationshipDao {
                 Person person2 = new Person();
                 person1.setName(details[0]);
                 person2.setName(details[1]);
-                Relationship re = new Relationship(person1, person2, details[2]);
-                relationshiplist.add(re);
+                Relationship relationshipFromFile = new Relationship(person1, person2, details[2]);
+                relationshipList.add(relationshipFromFile);
             }
             inputFile.close();
         } catch (FileNotFoundException exception) {
@@ -42,6 +42,17 @@ public class RelationshipDao {
         }
     }
 
+    /**
+     * A method to pass result list to view
+     * 
+     * @param  
+     * @return a list of person
+     */
+    public ArrayList<Relationship> getResultList()
+    {
+    		return relationshipList;
+    }
+    
 //    private void writeFile(){
 //        String fileName = "Relationship.txt";
 //
