@@ -12,11 +12,14 @@ import javafx.stage.Stage;
 public class MiniNet extends Application {
 	PeopleDao peopleDao = new PeopleDao();
 	private ArrayList<Person> personViewList;
+    RelationshipDao relationshipDao = new RelationshipDao();
+    private ArrayList<Relationship> relationshipViewList;
 	
 	public MiniNet()
     {
         //Optional constructor
     		peopleDao = new PeopleDao();
+    		relationshipDao = new RelationshipDao();
     }
     
     @Override
@@ -34,6 +37,8 @@ public class MiniNet extends Application {
     		peopleDao.readfile();
     		peopleDao.loadPeopleFile();
     		personViewList = peopleDao.getResultList();
+    		relationshipDao.loadRelationshipFile();
+
     		
     		// Creating the Java button
         final Button button = new Button();
