@@ -38,7 +38,7 @@ public class MiniNet extends Application {
     		peopleDao.loadPeopleFile();
     		personViewList = peopleDao.getResultList();
     		relationshipDao.loadRelationshipFile();
-
+    		relationshipViewList = relationshipDao.getResultList();
     		
     		// Creating the Java button
         final Button button = new Button();
@@ -118,6 +118,9 @@ public class MiniNet extends Application {
             // add two people as a friends,parents,classmate,colleagues,couple
             // parents, person2 is person1's Mparents
             // parents, person2 is person1's Fparents
+    			System.out.println(relationshipViewList.get(0).getPerson1().getName());
+    			System.out.println(relationshipViewList.get(0).getPerson2().getName());
+    			System.out.println(relationshipViewList.get(0).getRelationship());
         });
         // Registering a handler for button
         button7.setOnAction((ActionEvent event) -> {
