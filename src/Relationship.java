@@ -1,18 +1,28 @@
 public class Relationship {
-    private Person person;
+    private Person person1;
+    private Person person2;
     private String relationship;
 
-    public Relationship(Person person, String relationship) {
-        this.person = person;
+    public Relationship(Person person1, Person person2, String relationship) {
+        this.person1 = person1;
+        this.person2 = person2;
         this.relationship = relationship;
     }
 
-    public Person getPerson() {
-        return person;
+    public Person getPerson1() {
+        return person1;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPerson1(Person person1) {
+        this.person1 = person1;
+    }
+
+    public Person getPerson2() {
+        return person2;
+    }
+
+    public void setPerson2(Person person2) {
+        this.person2 = person2;
     }
 
     public String getRelationship() {
