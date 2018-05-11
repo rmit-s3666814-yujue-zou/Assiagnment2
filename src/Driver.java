@@ -27,11 +27,12 @@ import java.util.ArrayList;
 
  	public void addRelationship(String Person1, String Person2, String relationship)
  	{
- 		Person person1;
+ 		Person person1 = new Person();
  		person1.setName(Person1);
- 		Person person2;
+ 		Person person2 = new Person();
  		person2.setName(Person2);
  		relationship = "friends";
- 		relationshipDriverList.add();
+ 		Relationship insertRelationship = new Relationship(person1, person2, relationship);
+ 		relationshipDriverList.add(insertRelationship);
  	}
  } 
