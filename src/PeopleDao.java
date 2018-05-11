@@ -2,7 +2,7 @@
  * Write a description of class PeopleDao here.
  *
  * @author Jyh-woei Yang
- * @version 03/05/2018
+ * @version 12/05/2018
  */
 
 import java.sql.Connection;
@@ -68,14 +68,21 @@ import java.io.*;
     }
 
     /**
-     * A method to pass result list to view
+     * A method to create result list to view
      * 
      * @param  
      * @return a list of person
      */
-    public ArrayList<Person> getResultList()
+    public void addToResultList(String details1,String details2, String details3, String details4)
     {
-    		return personList;
+    			String userString = "" + details1 + "," + details2 + "," + details3 + "," + details4 + " ";
+    			String[] details = userString.split(",");
+            Person person = new Person();
+            person.setName(details[0]);
+            person.setAge(convertStringtoInt(details[1]));
+            person.setGender(details[2].charAt(0));
+            person.setStatus(details[3]);
+            personList.add(person);
     }
     
 	/**
@@ -114,20 +121,28 @@ import java.io.*;
  			connection.prepareStatement(addPeople("Hannah White","14","F","Student at PLC")).execute();
  			connection.prepareStatement(addPeople("Zoe Foster","28","F","Founder of ZFX")).execute();
  			connection.prepareStatement(addPeople("Mark Turner","2","M","")).execute();
+ 			
  			//query from the db
  			rs = connection.prepareStatement("select name,age,gender,status from people;").executeQuery();
  			rs.next();
  			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
  			rs.next();
  			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
  			rs.next();
  			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
  			rs.next();
  			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
  			rs.next();
  			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
  			rs.next();
  			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+ 			System.out.println(rs.getString(1));
  			connection.commit();
  		}catch (SQLException e2){
  			e2.printStackTrace();
@@ -168,6 +183,17 @@ import java.io.*;
             System.out.println("NumberFormatException: " + nfe.getMessage() + ", please input an integer!");
         }
         return i;
+    }
+
+     /**
+     * A method to pass result list to view
+     * 
+     * @param  
+     * @return a list of person
+     */
+    public ArrayList<Person> getResultList()
+    {
+    		return personList;
     }
 
  } 

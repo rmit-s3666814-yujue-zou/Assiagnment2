@@ -35,7 +35,8 @@ public class MiniNet extends Application {
     public void start(Stage primaryStage) {
         //Loading data from database
     		peopleDao.readfile();
-    		peopleDao.loadPeopleFile();
+    		//Loading data from text file
+    		//peopleDao.loadPeopleFile();
     		personViewList = peopleDao.getResultList();
     		relationshipDao.loadRelationshipFile();
     		relationshipViewList = relationshipDao.getResultList();
@@ -64,6 +65,7 @@ public class MiniNet extends Application {
         button.setOnAction((ActionEvent event) -> {
             // Printing "1) Add a person into the network" to the console
             System.out.println("1) Add a person into the network");
+            //Open a new windows using GUI, with textboxs, input the attributes and button add => validation
             //add a person to this network
         });
         // Registering a handler for button
@@ -85,6 +87,18 @@ public class MiniNet extends Application {
             		System.out.println(personViewList.get(0).getAge());
             		System.out.println(personViewList.get(0).getGender());
             		System.out.println(personViewList.get(0).getStatus());
+            		System.out.println(personViewList.get(1).getName());
+            		System.out.println(personViewList.get(1).getAge());
+            		System.out.println(personViewList.get(1).getGender());
+            		System.out.println(personViewList.get(1).getStatus());
+            		System.out.println(personViewList.get(2).getName());
+            		System.out.println(personViewList.get(2).getAge());
+            		System.out.println(personViewList.get(2).getGender());
+            		System.out.println(personViewList.get(2).getStatus());
+            		System.out.println(personViewList.get(3).getName());
+            		System.out.println(personViewList.get(3).getAge());
+            		System.out.println(personViewList.get(3).getGender());
+            		System.out.println(personViewList.get(3).getStatus());
         });
         // Registering a handler for button
         button4.setOnAction((ActionEvent event) -> {
@@ -132,6 +146,7 @@ public class MiniNet extends Application {
         // Registering a handler for button
         button8.setOnAction((ActionEvent event) -> {
             // Printing "8) Exit" to the console
+        		// close all th windows.
             System.out.println("8) Exit");
             stop();
         });
