@@ -30,10 +30,11 @@ public class MiniNet extends Application {
     @Override
     public void init()
     {
-         //By default this does nothing, but it
-         //can carry out code to set up your app.
-         //It runs once before the start method,
-         //and after the constructor.
+        //By default this does nothing, but it
+        //can carry out code to set up your app.
+        //It runs once before the start method,
+        //and after the constructor.
+    	
         //Loading data from database
     		peopleDao.readfile();
     		//Loading data from text file

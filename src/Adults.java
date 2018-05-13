@@ -2,7 +2,7 @@
  * Write a description of class Adult here.
  *
  * @author Jyh-woei Yang
- * @version 27/04/2018
+ * @version 13/05/2018
  */
 public class Adults extends Person
 {
@@ -11,9 +11,16 @@ public class Adults extends Person
     /**
      * Constructor for objects of class Adult
      */
-    public Adults(String name, int age, char gender, String status)
+    public Adults(String name, int age, char gender, String status,String relationshipList)
     {
         // initialise instance variables
-        super(name,age,gender,status);
+        super(name,age,gender,status,relationshipList);
+    }
+    
+    public Boolean validAdult(int age)
+    {
+    		if (age <= 150 && age > 16)
+    			return true;
+    		return false;
     }
 }

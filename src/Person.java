@@ -3,7 +3,7 @@
  * Write a description of class Person here.
  *
  * @author Jyh-woei Yang
- * @version 27/04/2018
+ * @version 13/05/2018
  */
 public class Person
 {
@@ -12,6 +12,7 @@ public class Person
    private int age;
    private char gender;
    private String status;
+   private String relationshipList;
     
    public Person()
    {
@@ -20,15 +21,17 @@ public class Person
        this.age = 0;
        this.gender = 'M';
        this.status = "";
+       this.relationshipList = "";
    }
    
-    public Person(String name, int age, char gender, String status)
+    public Person(String name, int age, char gender, String status, String relationshipList)
     {
         // initialise instance variables in constructor
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.status = status;
+        this.relationshipList = relationshipList;
     }
     
     /**
@@ -83,6 +86,18 @@ public class Person
         return status;
     }
 
+    /**
+    * A method to get a String of name
+    *
+    * @param  
+    * @return a String of RelationshipList 
+    */
+    public String getRelationshipList() 
+    {
+    		return relationshipList;
+    }
+
+    
      /**
      * A method to set a String of name
      *
@@ -133,6 +148,17 @@ public class Person
     {
         // put your code here
         this.status = status;
+    }
+    
+    /**
+    * A method to set a String of name
+    *
+    * @param  name  a String for a method
+    * @return 
+    */
+    public void setRelationshipList(String relationshipList) 
+    {
+    		this.relationshipList = relationshipList;
     }
 
    /**
