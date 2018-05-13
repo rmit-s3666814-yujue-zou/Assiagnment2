@@ -14,7 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MiniNet extends Application {
+public class MiniNet extends Application 
+{
 	PeopleDao peopleDao = new PeopleDao();
 	private ArrayList<Person> personViewList;
     RelationshipDao relationshipDao = new RelationshipDao();
@@ -45,7 +46,8 @@ public class MiniNet extends Application {
     }
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) 
+    {
     		// Creating the Java button
         final Button button = new Button();
         final Button button2 = new Button();
@@ -71,16 +73,18 @@ public class MiniNet extends Application {
             // Printing "1) Add a person into the network" to the console
             System.out.println("1) Add a person into the network");
             Stage secondaryStage1 = new Stage();
-            start2(secondaryStage1);
-            //Open a new windows using GUI, with textboxs, input the attributes and button add => validation
+            start1(secondaryStage1);
+            //Open a new window using GUI, with text boxes , input the attributes and button add => validation
             //add a person to this network
         });
         // Registering a handler for button
         button2.setOnAction((ActionEvent event) -> {
             // Printing "2) Select a person" to the console
             System.out.println("2) Select a person");
-            //Open a new windows using GUI, list out buttons and names
-            //Clink on the button and return the index
+            Stage secondaryStage2 = new Stage();
+            start2(secondaryStage2);
+            //Open a new window using GUI, list out text field, labels and names
+            //Clink on the submit button and return the index
         });
         // Registering a handler for button
         button3.setOnAction((ActionEvent event) -> {
@@ -89,23 +93,26 @@ public class MiniNet extends Application {
             //If the selectPerson = null,
             //	show error message "Person are not select", return to the menu
             //else show specific person's profile
-            //for(int i = 0; i < personList.size(); i++)	
-            		System.out.println(personViewList.get(0).getName());
-            		System.out.println(personViewList.get(0).getAge());
-            		System.out.println(personViewList.get(0).getGender());
-            		System.out.println(personViewList.get(0).getStatus());
-            		System.out.println(personViewList.get(1).getName());
-            		System.out.println(personViewList.get(1).getAge());
-            		System.out.println(personViewList.get(1).getGender());
-            		System.out.println(personViewList.get(1).getStatus());
-            		System.out.println(personViewList.get(2).getName());
-            		System.out.println(personViewList.get(2).getAge());
-            		System.out.println(personViewList.get(2).getGender());
-            		System.out.println(personViewList.get(2).getStatus());
-            		System.out.println(personViewList.get(3).getName());
-            		System.out.println(personViewList.get(3).getAge());
-            		System.out.println(personViewList.get(3).getGender());
-            		System.out.println(personViewList.get(3).getStatus());
+            for(int i = 0; i < personViewList.size(); i++)	
+            {
+            		System.out.println(personViewList.get(i).getName());
+            		System.out.println(personViewList.get(i).getAge());
+            		System.out.println(personViewList.get(i).getGender());
+            		System.out.println(personViewList.get(i).getStatus());
+            }
+            		
+            		//System.out.println(personViewList.get(1).getName());
+            		//System.out.println(personViewList.get(1).getAge());
+            		//System.out.println(personViewList.get(1).getGender());
+            		//System.out.println(personViewList.get(1).getStatus());
+            		//System.out.println(personViewList.get(2).getName());
+            		//System.out.println(personViewList.get(2).getAge());
+            		//System.out.println(personViewList.get(2).getGender());
+            		//System.out.println(personViewList.get(2).getStatus());
+            		//System.out.println(personViewList.get(3).getName());
+            		//System.out.println(personViewList.get(3).getAge());
+            		//System.out.println(personViewList.get(3).getGender());
+            		//System.out.println(personViewList.get(3).getStatus());
         });
         // Registering a handler for button
         button4.setOnAction((ActionEvent event) -> {
@@ -153,7 +160,7 @@ public class MiniNet extends Application {
         // Registering a handler for button
         button8.setOnAction((ActionEvent event) -> {
             // Printing "8) Exit" to the console
-        		// close all th windows.
+        		// close all the windows.
             System.out.println("8) Exit");
             stop();
         });
@@ -178,7 +185,8 @@ public class MiniNet extends Application {
         primaryStage.show();
     }
 
-    public void start2(Stage secondaryStage1) {
+    public void start1(Stage secondaryStage1) 
+    {
     	
 	    	Label label1 = new Label("Name:");
 	    	TextField textField = new TextField ();
@@ -230,30 +238,32 @@ public class MiniNet extends Application {
     		grid.getChildren().add(label);
 
     		//Setting an action for the Submit button
-    		submit.setOnAction(new EventHandler<ActionEvent>() {
-
-    		@Override
-    	    public void handle(ActionEvent e) {
-    	        if ((comment.getText() != null && !comment.getText().isEmpty())) {
-    	            label.setText(name.getText() + " " + lastName.getText() + ", "
-    	                + "thank you for your comment!");
-    	        } else {
-    	            label.setText("You have not left a comment.");
-    	        }
-    	     }
-    	 });
+    		submit.setOnAction(new EventHandler<ActionEvent>() 
+    		{
+	    		@Override
+	    	    public void handle(ActionEvent e) 
+	    		{
+	    	        if ((comment.getText() != null && !comment.getText().isEmpty())) {
+	    	            label.setText(name.getText() + " " + lastName.getText() + ", "
+	    	                + "thank you for your comment!");
+	    	        } else {
+	    	            label.setText("You have not left a comment.");
+	    	        }
+	    	     }
+    		});
     	 
-    	//Setting an action for the Clear button
-    	clear.setOnAction(new EventHandler<ActionEvent>() {
-
-    	@Override
-    	    public void handle(ActionEvent e) {
-    	        name.clear();
-    	        lastName.clear();
-    	        comment.clear();
-    	        label.setText(null);
-    	    }
-    	});
+	    	//Setting an action for the Clear button
+	    	clear.setOnAction(new EventHandler<ActionEvent>() 
+	    	{
+	    		@Override
+	    	    public void handle(ActionEvent e) 
+	    		{
+	    	        name.clear();
+	    	        lastName.clear();
+	    	        comment.clear();
+	    	        label.setText(null);
+	    	    }
+	    	});
     		
         // Adding all the nodes to the StackPane
         //grid.getChildren().addAll();
@@ -267,6 +277,103 @@ public class MiniNet extends Application {
         // Show the window(primaryStage)
         secondaryStage1.show();
     }
+    
+    public void start2(Stage secondaryStage2) {
+    	 	
+    	Label label1 = new Label("Name:");
+    TextField textField = new TextField ();
+    	HBox hb = new HBox();
+    	hb.getChildren().addAll(label1, textField);
+    	hb.setSpacing(10);
+	
+    	//Creating a GridPane container
+    	GridPane grid = new GridPane();
+    	grid.setPadding(new Insets(10, 10, 10, 10));
+    	grid.setVgap(5);
+    	grid.setHgap(5);
+
+    	//Adding a dataLabel    	
+    	Label dataLabel = new Label();
+	GridPane.setConstraints(dataLabel, 0, 0);
+	GridPane.setColumnSpan(dataLabel, 1);
+	grid.getChildren().add(dataLabel);
+    	String showntext = "";
+    	for(int i = 0; i < personViewList.size(); i++)
+    	{
+    		showntext = showntext + i + ") " + personViewList.get(i).getName() + "\n";
+    	}
+    		dataLabel.setText(showntext);
+    	
+    	//Defining the selectNo text field
+    	final TextField selectNo = new TextField();
+    	selectNo.setPromptText("Enter your select no.");
+    	selectNo.setPrefColumnCount(10);
+    	selectNo.getText();
+    	GridPane.setConstraints(selectNo, 0, 1);
+    	grid.getChildren().add(selectNo);
+    	
+    	//Defining the Submit button
+    	Button submit = new Button("Submit");
+    	GridPane.setConstraints(submit, 1, 1);
+    	grid.getChildren().add(submit);
+    	
+    	//Defining the Clear button
+    	Button clear = new Button("Clear");
+    	GridPane.setConstraints(clear, 1, 2);
+    	grid.getChildren().add(clear);
+    	
+	//Adding a Label
+	final Label label = new Label();
+	GridPane.setConstraints(label, 0, 3);
+	GridPane.setColumnSpan(label, 2);
+	grid.getChildren().add(label);
+
+	//Setting an action for the Submit button
+	submit.setOnAction(new EventHandler<ActionEvent>() 
+	{
+
+		@Override
+	    public void handle(ActionEvent e) 
+		{
+	        if (!validationPersonListSize(convertStringtoInt(selectNo.getText())))
+	        {
+	        		label.setText("Your select number is out of bound, please select it again!");
+	        }
+	        else if ((selectNo.getText() != null && !selectNo.getText().isEmpty())) 
+	        {
+
+	        		
+	        		label.setText("Thank you for selecting no." + selectNo.getText() + "; Person name: " + personViewList.get(convertStringtoInt(selectNo.getText())).getName());
+	        } 
+	        else 
+	        {
+	            label.setText("You have not select any items.");
+	        }
+	     }
+	});
+	 
+	//Setting an action for the Clear button
+	clear.setOnAction(new EventHandler<ActionEvent>() 
+	{
+		@Override
+		    public void handle(ActionEvent e) {
+				selectNo.clear();
+		        label.setText(null);
+		    }
+	});
+		
+    // Adding all the nodes to the StackPane
+    //grid.getChildren().addAll();
+		grid.setAlignment(Pos.CENTER);
+    
+    // Creating a scene object
+    final Scene scene = new Scene(grid, 400, 300);
+    // Adding the title to the window (primaryStage)
+    secondaryStage2.setTitle("Select a person from network");
+    secondaryStage2.setScene(scene);
+    // Show the window(primaryStage)
+    secondaryStage2.show();
+}
     
     @Override
     public void stop()
@@ -289,6 +396,27 @@ public class MiniNet extends Application {
         launch(arguments);
     }
     
+    private int convertStringtoInt(String input) //method to convert String to Integer
+    {
+        //intialised variables
+        String S = input;
+        int i = -1;
+        //try catch to handle NumberFormatException
+        try
+        {
+            // the String to int conversion happens here
+            i = Integer.parseInt(input.trim());
+
+            // print out the value after the conversion
+            //System.out.println("int i = " + i);
+        }
+        catch (NumberFormatException nfe)
+        {
+            System.out.println("NumberFormatException: " + nfe.getMessage() + ", please input an integer!");
+        }
+        return i; //if (i == -1) it is a NumberFormatException. 
+    }
+    
     /**
      * A validation function to valid inputsize is Out of Bound or not
      * 
@@ -296,11 +424,11 @@ public class MiniNet extends Application {
      */
     public Boolean validationPersonListSize(int inputSize)
     {
-    		if (0 < inputSize && inputSize < personViewList.size())
+    		if (0 <= inputSize && inputSize < personViewList.size())
     			return true;
     		if (inputSize > personViewList.size() || inputSize < 0)
     			return false;
-			return null;
+		return false;
     }
     
 }
