@@ -3,9 +3,14 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,10 +34,6 @@ public class MiniNet extends Application {
          //can carry out code to set up your app.
          //It runs once before the start method,
          //and after the constructor.
-    }
-    
-    @Override
-    public void start(Stage primaryStage) {
         //Loading data from database
     		peopleDao.readfile();
     		//Loading data from text file
@@ -40,7 +41,10 @@ public class MiniNet extends Application {
     		personViewList = peopleDao.getResultList();
     		relationshipDao.loadRelationshipFile();
     		relationshipViewList = relationshipDao.getResultList();
-    		
+    }
+    
+    @Override
+    public void start(Stage primaryStage) {
     		// Creating the Java button
         final Button button = new Button();
         final Button button2 = new Button();
@@ -65,6 +69,8 @@ public class MiniNet extends Application {
         button.setOnAction((ActionEvent event) -> {
             // Printing "1) Add a person into the network" to the console
             System.out.println("1) Add a person into the network");
+            Stage secondaryStage1 = new Stage();
+            start2(secondaryStage1);
             //Open a new windows using GUI, with textboxs, input the attributes and button add => validation
             //add a person to this network
         });
@@ -170,11 +176,101 @@ public class MiniNet extends Application {
         // Show the window(primaryStage)
         primaryStage.show();
     }
+
+    public void start2(Stage secondaryStage1) {
+    	
+	    	Label label1 = new Label("Name:");
+	    	TextField textField = new TextField ();
+	    	HBox hb = new HBox();
+	    	hb.getChildren().addAll(label1, textField);
+	    	hb.setSpacing(10);
+    	
+	    	//Creating a GridPane container
+	    	GridPane grid = new GridPane();
+	    	grid.setPadding(new Insets(10, 10, 10, 10));
+	    	grid.setVgap(5);
+	    	grid.setHgap(5);
+	    	
+	    	//Defining the Name text field
+	    	final TextField name = new TextField();
+	    	name.setPromptText("Enter your first name.");
+	    	name.setPrefColumnCount(10);
+	    	name.getText();
+	    	GridPane.setConstraints(name, 0, 0);
+	    	grid.getChildren().add(name);
+	    	
+	    	//Defining the Last Name text field
+	    	final TextField lastName = new TextField();
+	    	lastName.setPromptText("Enter your last name.");
+	    	GridPane.setConstraints(lastName, 0, 1);
+	    	grid.getChildren().add(lastName);
+	    	
+	    	//Defining the Comment text field
+	    	final TextField comment = new TextField();
+	    	comment.setPrefColumnCount(15);
+	    	comment.setPromptText("Enter your comment.");
+	    	GridPane.setConstraints(comment, 0, 2);
+	    	grid.getChildren().add(comment);
+	    	
+	    	//Defining the Submit button
+	    	Button submit = new Button("Submit");
+	    	GridPane.setConstraints(submit, 1, 0);
+	    	grid.getChildren().add(submit);
+	    	
+	    	//Defining the Clear button
+	    	Button clear = new Button("Clear");
+	    	GridPane.setConstraints(clear, 1, 1);
+	    	grid.getChildren().add(clear);
+	    	
+    		//Adding a Label
+    		final Label label = new Label();
+    		GridPane.setConstraints(label, 0, 3);
+    		GridPane.setColumnSpan(label, 2);
+    		grid.getChildren().add(label);
+
+    		//Setting an action for the Submit button
+    		submit.setOnAction(new EventHandler<ActionEvent>() {
+
+    		@Override
+    	    public void handle(ActionEvent e) {
+    	        if ((comment.getText() != null && !comment.getText().isEmpty())) {
+    	            label.setText(name.getText() + " " + lastName.getText() + ", "
+    	                + "thank you for your comment!");
+    	        } else {
+    	            label.setText("You have not left a comment.");
+    	        }
+    	     }
+    	 });
+    	 
+    	//Setting an action for the Clear button
+    	clear.setOnAction(new EventHandler<ActionEvent>() {
+
+    	@Override
+    	    public void handle(ActionEvent e) {
+    	        name.clear();
+    	        lastName.clear();
+    	        comment.clear();
+    	        label.setText(null);
+    	    }
+    	});
+    		
+        // Adding all the nodes to the StackPane
+        //grid.getChildren().addAll();
+    		grid.setAlignment(Pos.CENTER);
+        
+        // Creating a scene object
+        final Scene scene = new Scene(grid, 400, 300);
+        // Adding the title to the window (primaryStage)
+        secondaryStage1.setTitle("Add Person to the network");
+        secondaryStage1.setScene(scene);
+        // Show the window(primaryStage)
+        secondaryStage1.show();
+    }
     
     @Override
     public void stop()
     {
-        System.exit(0);
+    		System.exit(0);
         //By default this does nothing
         //It runs if the user clicks the go-away button
         //closing the window or if Platorm.exit() is called.
