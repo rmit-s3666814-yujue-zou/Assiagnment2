@@ -25,13 +25,13 @@ import java.util.ArrayList;
  		relationshipDriverList = new ArrayList<Relationship>();
  	}
 
- 	public void addRelationship(String Person1, String Person2, String relationship)
- 	{
- 		Person person1;
- 		person1.setName(Person1);
- 		Person person2;
- 		person2.setName(Person2);
- 		relationship = "friends";
- 		relationshipDriverList.add();
- 	}
+// 	public void addRelationship(Person Person1, Person Person2, String relationship)
+// 	{
+// 		Person person1;
+// 		person1.setName(Person1);
+// 		Person person2;
+// 		person2.setName(Person2);
+// 		relationship = "friends";
+// 		relationshipDriverList.add();
+// 	}
  } 

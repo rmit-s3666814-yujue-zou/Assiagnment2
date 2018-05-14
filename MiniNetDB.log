@@ -1,0 +1,15 @@
+/*C3*/SET SCHEMA PUBLIC
+drop table people if exists
+create table people (name varchar(20) not null,age varchar(20) not null,gender varchar(20) not null,status varchar(20))
+INSERT INTO PEOPLE VALUES('Andy','30','M','Working at KFC')
+COMMIT
+INSERT INTO PEOPLE VALUES('Alex Smith','21','M','Student at RMIT')
+COMMIT
+INSERT INTO PEOPLE VALUES('Ben Turner','35','M','Manager at Coles')
+COMMIT
+INSERT INTO PEOPLE VALUES('Hannah White','14','F','Student at PLC')
+COMMIT
+INSERT INTO PEOPLE VALUES('Zoe Foster','28','F','Founder of ZFX')
+COMMIT
+INSERT INTO PEOPLE VALUES('Mark Turner','2','M','')
+COMMIT
