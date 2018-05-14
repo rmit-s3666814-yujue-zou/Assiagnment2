@@ -41,9 +41,26 @@ public class RelationshipDao {
             System.err.println("Error, invalid file");
         }
     }
+    public void writeFile(){
+        String fileName = "Relationship.txt";
+        String[] detail = new String[4];
+        Scanner input = new Scanner(System.in);
+        String line = " ";
+        try{
+            PrintWriter outputFile = new PrintWriter("Relationship");
+            System.out.println(" ");
+            outputFile.println(line);
+            outputFile.close();
 
-//    private void writeFile(){
-//        String fileName = "Relationship.txt";
-//
-//    }
+        }catch (FileNotFoundException exception){
+            System.err.println(fileName + "Not found");
+        }catch (IOException e){
+            System.err.println("Error, not found");
+        }
+
+    }
+
+
+
+
 }
