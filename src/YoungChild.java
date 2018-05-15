@@ -5,7 +5,7 @@
  * Their profiles records their age, gender, status.
  *
  * @author Jyh-woei Yang
- * @version 13/05/2018
+ * @version 16/05/2018
  */
 public class YoungChild extends Person
 {
@@ -15,10 +15,10 @@ public class YoungChild extends Person
     /**
      * Constructor for objects of class Adult
      */
-    public YoungChild(String name, int age, char gender, String status, String relationshipList)
+    public YoungChild(String name, String photoPath, int age, char gender, String status, String ausStates, String relationshipList)
     {
         // initialise instance variables
-        super(name,age,gender,status,relationshipList);
+        super(name,photoPath,age,gender,status,ausStates,relationshipList);
         profile = "";
     }
     
