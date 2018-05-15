@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Write a description of class Driver here.
+ * This is a driver class named Driver. It also present the controller (business logic) layer of the application.
  *
  * @author Jyh-woei Yang
  * @version 29/04/2018
