@@ -3,7 +3,7 @@
  * Write a description of class Children here.
  *
  * @author Jyh-woei Yang
- * @version 13/05/2018
+ * @version 16/05/2018
  */
 public class Children extends Person
 {
@@ -13,10 +13,10 @@ public class Children extends Person
     /**
      * Constructor for objects of class Children
      */
-    public Children(String name, int age, char gender, String status, String relationshipList)
+    public Children(String name, String photoPath, int age, char gender, String status, String ausStates, String relationshipList)
     {
         // initialise instance variables
-        super(name,age,gender,status,relationshipList);
+        super(name,photoPath,age,gender,status,ausStates,relationshipList);
     }
     
     public Boolean validChild(int age)

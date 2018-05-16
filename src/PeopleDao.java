@@ -2,7 +2,7 @@
  * Write a description of class PeopleDao here.
  *
  * @author Jyh-woei Yang
- * @version 12/05/2018
+ * @version 16/05/2018
  */
 
 import java.sql.Connection;
@@ -50,9 +50,11 @@ import java.io.*;
                 String[] details = userString.split(",");
                 Person person = new Person();
                 person.setName(details[0]);
+                person.setPhotoPath(details[1]);
                 person.setAge(convertStringtoInt(details[4]));
                 person.setGender(details[3].charAt(0));
                 person.setStatus(details[2]);
+                person.setAusStates(details[5]);
                 personList.add(person);
                 //person.displayPerson();
             }
@@ -68,20 +70,22 @@ import java.io.*;
     }
 
     /**
-     * A method to create result list to view
+     * A method to let DB source create a result list and get ready to pass it onto view
      * 
      * @param  
      * @return a list of person
      */
-    public void addToResultList(String details1,String details2, String details3, String details4)
+    public void addToResultList(String details1,String details2, String details3, String details4, String details5, String details6)
     {
-    			String userString = "" + details1 + "," + details2 + "," + details3 + "," + details4 + " ";
+    			String userString = "" + details1 + "," + details2 + "," + details3 + "," + details4 + "," + details5 + "," + details6 + " ";
     			String[] details = userString.split(",");
             Person person = new Person();
             person.setName(details[0]);
-            person.setAge(convertStringtoInt(details[1]));
-            person.setGender(details[2].charAt(0));
-            person.setStatus(details[3]);
+            person.setPhotoPath(details[1]);
+            person.setAge(convertStringtoInt(details[2]));
+            person.setGender(details[3].charAt(0));
+            person.setStatus(details[4]);
+            person.setAusStates(details[5]);
             personList.add(person);
     }
     
@@ -113,35 +117,35 @@ import java.io.*;
  			connection = DriverManager.getConnection("jdbc:hsqldb:MiniNetDB","sa","123");
 
  			connection.prepareStatement("drop table people if exists;").execute();
- 			connection.prepareStatement("create table people (name varchar(20) not null,age varchar(20) not null,gender varchar(20) not null,status varchar(20));").execute();
+ 			connection.prepareStatement("create table people (name varchar(20) not null,photopath varchar(20) not null,age varchar(20) not null,gender varchar(20) not null,status varchar(20) not null, ausstates varchar(20) not null);").execute();
  			
- 			connection.prepareStatement(addPeople("Andy","30","M","Working at KFC")).execute();
- 			connection.prepareStatement(addPeople("Alex Smith","21","M","Student at RMIT")).execute();
- 			connection.prepareStatement(addPeople("Ben Turner","35","M","Manager at Coles")).execute();
- 			connection.prepareStatement(addPeople("Hannah White","14","F","Student at PLC")).execute();
- 			connection.prepareStatement(addPeople("Zoe Foster","28","F","Founder of ZFX")).execute();
- 			connection.prepareStatement(addPeople("Mark Turner","2","M","")).execute();
+ 			connection.prepareStatement(addPeople("Andy","N/A","30","M","Working at KFC","VIC")).execute();
+ 			connection.prepareStatement(addPeople("Alex Smith","N/A","21","M","Student at RMIT","WA")).execute();
+ 			connection.prepareStatement(addPeople("Ben Turner","BenPhoto.jpg","35","M","Manager at Coles","VIC")).execute();
+ 			connection.prepareStatement(addPeople("Hannah White","Hannah.png","14","F","Student at PLC","VIC")).execute();
+ 			connection.prepareStatement(addPeople("Zoe Foster","N/A","28","F","Founder of ZFX","VIC")).execute();
+ 			connection.prepareStatement(addPeople("Mark Turner","Mark.jpeg","2","M","N/A","VIC")).execute();
  			
  			//query from the db
- 			rs = connection.prepareStatement("select name,age,gender,status from people;").executeQuery();
+ 			rs = connection.prepareStatement("select name,photopath,age,gender,status,ausstates from people;").executeQuery();
  			rs.next();
- 			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+ 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
  			rs.next();
- 			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+ 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
  			rs.next();
- 			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+ 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
  			rs.next();
- 			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+ 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
  			rs.next();
- 			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+ 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
  			rs.next();
- 			System.out.println(String.format("Name: %1s, Age: %1s, Gender: %1s, Status: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+ 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+ 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
  			System.out.println(rs.getString(1));
  			connection.commit();
  		}catch (SQLException e2){
@@ -152,9 +156,9 @@ import java.io.*;
 
  	}
 
- 	public String addPeople(String insertName, String insertAge, String insertGender, String insertStatus){
+ 	public String addPeople(String insertName,String insertPhotopath , String insertAge, String insertGender, String insertStatus, String insertAusstates){
 
- 		return "insert into people(name,age,gender,status)"+"values ('"+insertName+"','"+insertAge+"','"+insertGender+"','"+insertStatus+"')";
+ 		return "insert into people(name,photopath,age,gender,status,ausstates)"+"values ('"+insertName+"','"+insertPhotopath+"','"+insertAge+"','"+insertGender+"','"+insertStatus+"','"+insertAusstates+"')";
  	}
 
  	/**

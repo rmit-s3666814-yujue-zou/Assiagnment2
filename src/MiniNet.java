@@ -325,8 +325,10 @@ public class MiniNet extends Application
 	    		{
 	    	        if ((comment.getText() != null && !comment.getText().isEmpty())) 
 	    	        {
+
 	    	            label.setText(name.getText() + " " + lastName.getText()
 	    	                + " are now successfully added \ninto this Mini Network!");
+
 	    	            Person newPerson = new Person();
 	    	            newPerson.setName(name.getText() + " " + lastName.getText());
 	    	            newPerson.setPhotoPath("N/A");
@@ -379,7 +381,6 @@ public class MiniNet extends Application
      */
     public void start2(Stage secondaryStage2) 
     {
-	
     	//Creating a GridPane container
     	GridPane grid = new GridPane();
     	grid.setPadding(new Insets(10, 10, 10, 10));
@@ -435,9 +436,7 @@ public class MiniNet extends Application
     	        		label.setText("Your select number is out of bound, please select it again!");
     	        }
     	        else if ((selectNo.getText() != null && !selectNo.getText().isEmpty())) 
-    	        {
-
-    	        		
+    	        {		
     	        		label.setText("Thank you for selecting Person no." + selectNo.getText() + ";\n"
     	        				+ " Name: " + personViewList.get(convertStringtoInt(selectNo.getText())).getName() + ";\n"
     	        				+ " Age: " + personViewList.get(convertStringtoInt(selectNo.getText())).getAge() + ";\n"
@@ -482,9 +481,9 @@ public class MiniNet extends Application
      * @param a sets of String to show in label 
      * @return 
      */
+
     public void start3(Stage secondaryStage3,String t1,String t2,String t3,String t4,String t5,String t6) 
-    {
-    	 	
+    {    	 	
     	Label label1 = new Label("Name:");
     	TextField textField = new TextField ();
     	HBox hb = new HBox();
@@ -511,7 +510,7 @@ public class MiniNet extends Application
     		photoPath.setText("[Photopath]");
     	else
     		photoPath.setText("[" + t2 + "]");
-
+        
     	GridPane.setConstraints(photoPath, 20, 1);
     	GridPane.setColumnSpan(photoPath, 2);
     	grid.getChildren().add(photoPath);
