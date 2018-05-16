@@ -368,7 +368,7 @@ public class MiniNet extends Application
     		grid.setAlignment(Pos.CENTER);
         
         // Creating a scene object
-        final Scene scene = new Scene(grid, 400, 300);
+        final Scene scene = new Scene(grid, 400, 350);
         // Adding the title to the window (primaryStage)
         secondaryStage1.setTitle("Add Person to the network");
         secondaryStage1.setScene(scene);
