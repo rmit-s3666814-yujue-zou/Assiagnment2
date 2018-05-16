@@ -22,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.ButtonType;
 
 public class MiniNet extends Application 
 {
@@ -60,7 +61,7 @@ public class MiniNet extends Application
     public void start(Stage primaryStage) 
     {
     		// Creating the Java button
-        final Button button = new Button();
+		final Button button = new Button();
         final Button button2 = new Button();
         final Button button3 = new Button();
         final Button button4 = new Button();
@@ -70,14 +71,14 @@ public class MiniNet extends Application
         final Button button8 = new Button();
         
         // Setting text to button
-        button.setText("1) Add a person into the network");
-        button2.setText("2) Select a person");
-        button3.setText("3) Display the profile");
-        button4.setText("4) Delete the selected person");
-        button5.setText("5) Find out whether two people are directly connect in some ways");
-        button6.setText("6) Define relation between two people");
-        button7.setText("7) Find out the name(s) of the children or parents");
-        button8.setText("8) Exit");
+        button.setText( "Add a person        ");
+        button2.setText("Select a person     ");
+        button3.setText("Display the profile ");
+        button4.setText("Delete a person     ");
+        button5.setText(" Find out connection ");
+        button6.setText("Define relationship ");
+        button7.setText("Dispaly relationship");
+        button8.setText("          Exit          ");
 
         // Registering a handler for button
         button.setOnAction((ActionEvent event) -> {
@@ -228,18 +229,20 @@ public class MiniNet extends Application
         final VBox root = new VBox();
         // Adding all the nodes to the StackPane
         
-        root.setSpacing(10);
+        root.setSpacing(20);
         root.setAlignment(Pos.CENTER);
           
         root.getChildren().addAll(button, button2, button3, button4, button5, button6, button7, button8);
         
         // Creating a scene object
-        final Scene scene = new Scene(root, 800, 600);
-        // Adding the title to the window (primaryStage)
+        final Scene scene = new Scene(root, 600, 500);
+		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+		// Adding the title to the window (primaryStage)
         primaryStage.setTitle("MiniNet");
         primaryStage.setScene(scene);
         // Show the window(primaryStage)
         primaryStage.show();
+
     }
 
 	/**
@@ -369,6 +372,7 @@ public class MiniNet extends Application
         // Adding the title to the window (primaryStage)
         secondaryStage1.setTitle("Add Person to the network");
         secondaryStage1.setScene(scene);
+		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
         // Show the window(primaryStage)
         secondaryStage1.show();
     }
@@ -471,6 +475,7 @@ public class MiniNet extends Application
         // Adding the title to the window (primaryStage)
         secondaryStage2.setTitle("Select a person from network");
         secondaryStage2.setScene(scene);
+		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
         // Show the window(primaryStage)
         secondaryStage2.show();
 }
@@ -552,6 +557,7 @@ public class MiniNet extends Application
         // Adding the title to the window (primaryStage)
         secondaryStage3.setTitle("Display the profile");
         secondaryStage3.setScene(scene);
+		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
         // Show the window(primaryStage)
         secondaryStage3.show();
     }
@@ -645,6 +651,7 @@ public class MiniNet extends Application
             // Adding the title to the window (primaryStage)
             secondaryStage5.setTitle("Find out whether two people are directly connect in some ways");
             secondaryStage5.setScene(scene);
+		    scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
             // Show the window(primaryStage)
             secondaryStage5.show();
     }
@@ -750,6 +757,7 @@ public class MiniNet extends Application
 	    // Adding the title to the window (primaryStage)
 	    secondaryStage6.setTitle("Define relation between two people");
 	    secondaryStage6.setScene(scene);
+		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
 	    // Show the window(primaryStage)
 	    secondaryStage6.show();
 
@@ -822,6 +830,7 @@ public class MiniNet extends Application
     	    // Adding the title to the window (primaryStage)
     	    secondaryStage7.setTitle("Find out the name(s) of the children or parents");
     	    secondaryStage7.setScene(scene);
+		    scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
     	    // Show the window(primaryStage)
     	    secondaryStage7.show();
 	    
