@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Write a description of class Driver here.
+ * This is a driver class named Driver. It also present the controller (business logic) layer of the application.
  *
  * @author Jyh-woei Yang
  * @version 29/04/2018
@@ -25,6 +25,32 @@ import java.util.ArrayList;
  		relationshipDriverList = new ArrayList<Relationship>();
  	}
 
+ 	//data getter
+ 	public ArrayList<Person> getPersonDriverList()
+ 	{
+ 		return personDriverList;
+ 	}
+ 	
+ 	public ArrayList<Relationship> getRelationshipDriverList()
+ 	{
+ 		return relationshipDriverList;
+ 	}
+ 	
+ 	//data setter
+ 	public void setPersonDriverList(ArrayList<Person> personList)
+ 	{
+ 		personDriverList.clear();
+ 		for (int i = 0; i < personList.size(); i++)
+ 			personDriverList.add(personList.get(i));
+ 	}
+ 	
+ 	public void setRelationshipDriverList(ArrayList<Relationship> relationshipList)
+ 	{
+ 		relationshipDriverList.clear();
+ 		for (int i = 0; i < relationshipList.size(); i++)
+ 			relationshipDriverList.add(relationshipList.get(i));
+ 	}
+ 	
  	public void addRelationship(String Person1, String Person2, String relationship)
  	{
  		Person person1 = new Person();
