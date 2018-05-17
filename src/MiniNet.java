@@ -2,7 +2,7 @@
  * This is a startup class named MiniNet. It also present the view layer of the application.
  *
  * @author Jyh-woei Yang
- * @version 16/05/2018
+ * @version 17/05/2018
  */
 
 import java.io.FileNotFoundException;
@@ -55,7 +55,7 @@ public class MiniNet extends Application
     		personViewList = peopleDao.getResultList();
     		relationshipDao.loadRelationshipFile();
     		relationshipViewList = relationshipDao.getResultList();
-    		driver = new Driver();
+    		driver = new Driver(personViewList,relationshipViewList);
     }
     
     @Override
@@ -149,8 +149,14 @@ public class MiniNet extends Application
 	            
 	            start3(secondaryStage3,targetName,targetPhotopath,targetAge,targetGender,targetStatus,targetAusStates);
 	            
-	            //reset back to -1
-	            selectPersonIndex = -1;
+	            if(selectPersonIndex > (-1))
+	            {
+		            	//reset the selectPersonIndex back to -1, if we display the item successfully
+	        			selectPersonIndex = -1;
+	        			msgLabel.setText("");
+		            //reset back to -1
+	            }
+	            
             }		
         });
         
@@ -237,6 +243,8 @@ public class MiniNet extends Application
             //System.out.println(His/her Childrens' name are: )
             //System,out.println(His/her Parents' names are: +" MparentName "+ and + " +FparentName"")
             Stage secondaryStage7 = new Stage();
+            String mparentName = "";
+            String fparentName = "";
             
             if (selectPersonIndex == (-1))
         		msgLabel.setText("Msg: Please select a person to display.");
@@ -248,26 +256,37 @@ public class MiniNet extends Application
             		{
 	            		condition = "hasParents";	
 	            	
-		            String mparentName = "Ben Turner"; 
-		            String fparentName = "Zoe Foster";
+		            mparentName = driver.getFatherName(personViewList.get(selectPersonIndex)); 
+		            fparentName = driver.getMotherName(personViewList.get(selectPersonIndex));
+		            System.out.println(mparentName+fparentName);
             		}
 	            
             		if (personViewList.get(selectPersonIndex).getAge() > 16)
             			condition = "hasChildren";
             		//if has child (must be a Children or Young child, age <= 16)
-	            if (personViewList.get(selectPersonIndex).getAge() > 16 && condition == "hasChildren")
+	            if (personViewList.get(selectPersonIndex).getAge() > 16 && condition.equals("hasChildren"))
 	            {
 		            //if has children
 		            String children1 = "Susan Turner";
 		            String children2 = "Mark Turner";
 	            }
 	            
-	            start7(secondaryStage7, "Ben Turner", "Zoe Foster");
+	            start7(secondaryStage7, mparentName, fparentName);
 	            		
 	            if (condition.equals("hasChildren"))
-	            		start7(secondaryStage7, "", ""); //"Susan Turner" and "Mark Turner"
-	            
-	            
+	            	// for example, "Susan Turner" and "Mark Turner"
+	            {
+		            String myChildrenString = driver.getChildrenList(personViewList.get(selectPersonIndex));
+		            	start7(secondaryStage7, myChildrenString, "");
+	            }
+            }
+            
+            if(selectPersonIndex > (-1))
+            {
+	            	//reset the selectPersonIndex back to -1, if we display the item successfully
+        			selectPersonIndex = -1;
+        			msgLabel.setText("");
+	            //reset back to -1
             }
         });
         
@@ -357,13 +376,6 @@ public class MiniNet extends Application
 	    	GridPane.setConstraints(ausStates, 0, 5);
 	    	grid.getChildren().add(ausStates);
 	    	
-	    	//Defining the Comment text field
-	    	final TextField comment = new TextField();
-	    	comment.setPrefColumnCount(15);
-	    	comment.setPromptText("Enter your comment.");
-	    	GridPane.setConstraints(comment, 0, 6);
-	    	grid.getChildren().add(comment);
-	    	
 	    	//Defining the Submit button
 	    	Button submit = new Button("Submit");
 	    	GridPane.setConstraints(submit, 1, 0);
@@ -386,7 +398,7 @@ public class MiniNet extends Application
 	    		@Override
 	    	    public void handle(ActionEvent e) 
 	    		{
-	    	        if ((comment.getText() != null && !comment.getText().isEmpty())) 
+	    	        if ((name.getText() != null && !name.getText().isEmpty())) 
 	    	        {
 
 	    	            label.setText(name.getText() + " " + lastName.getText()
@@ -401,7 +413,7 @@ public class MiniNet extends Application
 	    	            newPerson.setAusStates(ausStates.getText());
 	    	            personViewList.add(newPerson);
 	    	        } else {
-	    	            label.setText("You have not left a comment.");
+	    	            label.setText("You have not insert a name.");
 	    	        }
 	    	     }
     		});
@@ -417,7 +429,6 @@ public class MiniNet extends Application
 	    	        age.clear();
 	    	        gender.clear();
 	    	        status.clear();
-	    	        comment.clear();
 	    	        ausStates.clear();
 	    	        label.setText(null);
 	    	    }
@@ -867,7 +878,7 @@ public class MiniNet extends Application
 	    	final Label title1 = new Label();
 
 	    	if(!t1.trim().isEmpty())
-	    		title1.setText("[Father]");
+	    		title1.setText("[ Father ]");
 
 	    	GridPane.setConstraints(title1, 0, 0);
     		GridPane.setColumnSpan(title1, 2);
@@ -877,7 +888,7 @@ public class MiniNet extends Application
     		final Label title2 = new Label();
 
     		if(!t2.trim().isEmpty())
-    			title2.setText("[Mother]");
+    			title2.setText("[ Mother ]");
 
     		GridPane.setConstraints(title2, 20, 0);
     		GridPane.setColumnSpan(title2, 2);
@@ -887,9 +898,9 @@ public class MiniNet extends Application
 	    	final Label person1 = new Label();
 
 	    	if(t1.trim().isEmpty())
-	    		person1.setText("[Father's name]");
+	    		person1.setText("[ Father's name ]");
 	    	else
-	    		person1.setText("[" + t1 + "]");
+	    		person1.setText("[ " + t1 + " ]");
 
 	    	GridPane.setConstraints(person1, 0, 1);
     		GridPane.setColumnSpan(person1, 2);
@@ -899,9 +910,17 @@ public class MiniNet extends Application
 	    	final Label person2 = new Label();
 
 	    	if(t2.trim().isEmpty())
-	    		person2.setText("[Mother's name]");
+	    		person2.setText("[ Mother's name ]");
 	    	else
-	    		person2.setText("[" + t2 + "]");
+	    		person2.setText("[ " + t2 + " ]");
+	    	
+	    	if(!t1.trim().isEmpty() && t2.trim().isEmpty())
+	    	{
+	    		person1.setText("[ " + t1 + " ]");
+	    		person2.setText("");
+	    		title1.setText("My children are");
+	    		title2.setText("");
+	    	}
 
     		GridPane.setConstraints(person2, 20, 1);
     		GridPane.setColumnSpan(person2, 2);
