@@ -1,4 +1,13 @@
-"Alex Smith","Ben Turner","friends"
-"Ben Turner","Zoe Foster","couple"
-"Mark Turner","Ben Turner","Mparent" 
-"Mark Turner","Zoe Foster","Fparent"
+Alex Smith,Ben Turner,friends
+Ben Turner,Zoe Foster,couple
+Mark Turner,Ben Turner,father 
+Mark Turner,Zoe Foster,mother
+Ben Turner,Mark Turner,child
+Zoe Foster,Mark Turner,child
+Mark Turner,Susan Turner,siblings
+Susan Turner,Ben Turner,father
+Susan Turner,Zoe Foster,mother
+Ben Turner,Susan Turner,child
+Zoe Foster,Susan Turner,child
+Carson Green,Ben Turner,colleague
+Hannah White,Susan Turner,classmate

@@ -1,7 +1,7 @@
 /**
  * This is a startup class named MiniNet. It also present the view layer of the application.
  *
- * @author Jyh-woei Yang, Yujue Zou
+ * @author Jyh-woei Yang
  * @version 16/05/2018
  */
 
@@ -22,7 +22,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.ButtonType;
 
 public class MiniNet extends Application 
 {
@@ -30,6 +29,7 @@ public class MiniNet extends Application
 	private ArrayList<Person> personViewList;
     RelationshipDao relationshipDao = new RelationshipDao();
     private ArrayList<Relationship> relationshipViewList;
+    private Driver driver;
     private int selectPersonIndex;
 	
 	public MiniNet()
@@ -55,6 +55,7 @@ public class MiniNet extends Application
     		personViewList = peopleDao.getResultList();
     		relationshipDao.loadRelationshipFile();
     		relationshipViewList = relationshipDao.getResultList();
+    		driver = new Driver();
     }
     
     @Override
@@ -69,17 +70,19 @@ public class MiniNet extends Application
         final Button button6 = new Button();
         final Button button7 = new Button();
         final Button button8 = new Button();
+        final Label msgLabel = new Label();
         
         // Setting text to button
-        button.setText( "Add a person        ");
-        button2.setText("Select a person     ");
-        button3.setText("Display the profile ");
-        button4.setText("Delete a person     ");
-        button5.setText(" Find out connection ");
-        button6.setText("Define relationship ");
-        button7.setText("Dispaly relationship");
-        button8.setText("          Exit          ");
-
+         button.setText("        Add a person          ");
+        button2.setText("       Select a person        ");
+        button3.setText("      Display the profile     ");
+        button4.setText(" Delete selected person ");
+        button5.setText("       Find connection        ");
+        button6.setText("      Define relationship     ");
+        button7.setText("       Show relationship      ");
+        button8.setText("             Exit             ");
+        msgLabel.setText("");
+        
         // Registering a handler for button
         button.setOnAction((ActionEvent event) -> {
             // Printing "1) Add a person into the network" to the console
@@ -89,6 +92,7 @@ public class MiniNet extends Application
             //Open a new window using GUI, with text boxes , input the attributes and button add => validation
             //add a person to this network
         });
+        
         // Registering a handler for button
         button2.setOnAction((ActionEvent event) -> {
             // Printing "2) Select a person" to the console
@@ -99,6 +103,7 @@ public class MiniNet extends Application
             //Open a new window using GUI, list out text field, labels and names
             //Clink on the submit button and shows the details
         });
+        
         // Registering a handler for button
         button3.setOnAction((ActionEvent event) -> {
             // Printing "3) Display the profile") to the console
@@ -107,43 +112,54 @@ public class MiniNet extends Application
             //	show error message "Person are not select", return to the menu
             //else show specific person's profile
             String input = "";
-            if (selectPersonIndex != (-1))
+            
+            if (selectPersonIndex == (-1))
+        		msgLabel.setText("Msg: Please select a person to display.");
+            else if (selectPersonIndex != (-1))
+            {
             		input = personViewList.get(selectPersonIndex).getName();
             
-            String targetName = "";
-            String targetPhotopath = "";
-            String targetAge = "";
-            String targetGender = "";
-            String targetStatus = "";
-            String targetAusStates = "";
-            
-            for(int i = 0; i < personViewList.size(); i++)	
-            {
-            		if (personViewList.get(i).getName().equals(input))
-            		{
-	            		System.out.println(personViewList.get(i).getName());
-	            		targetName = personViewList.get(i).getName();
-	            		System.out.println(personViewList.get(i).getPhotoPath());
-	            		targetPhotopath = personViewList.get(i).getPhotoPath();
-	            		System.out.println(personViewList.get(i).getAge());
-	            		targetAge = personViewList.get(i).getAge()+"";
-	            		System.out.println(personViewList.get(i).getGender());
-	            		targetGender = personViewList.get(i).getGender()+"";
-	            		System.out.println(personViewList.get(i).getStatus());
-	            		targetStatus = personViewList.get(i).getStatus();
-	            		System.out.println(personViewList.get(i).getAusStates());
-	            		targetAusStates = personViewList.get(i).getAusStates();
-            		}
-            }
-            Stage secondaryStage3 = new Stage();
-            
-            start3(secondaryStage3,targetName,targetPhotopath,targetAge,targetGender,targetStatus,targetAusStates);
-            		
+	            String targetName = "";
+	            String targetPhotopath = "";
+	            String targetAge = "";
+	            String targetGender = "";
+	            String targetStatus = "";
+	            String targetAusStates = "";
+	            
+	            for(int i = 0; i < personViewList.size(); i++)	
+	            {
+	            		if (personViewList.get(i).getName().equals(input))
+	            		{
+		            		System.out.println(personViewList.get(i).getName());
+		            		targetName = personViewList.get(i).getName();
+		            		System.out.println(personViewList.get(i).getPhotoPath());
+		            		targetPhotopath = personViewList.get(i).getPhotoPath();
+		            		System.out.println(personViewList.get(i).getAge());
+		            		targetAge = personViewList.get(i).getAge()+"";
+		            		System.out.println(personViewList.get(i).getGender());
+		            		targetGender = personViewList.get(i).getGender()+"";
+		            		System.out.println(personViewList.get(i).getStatus());
+		            		targetStatus = personViewList.get(i).getStatus();
+		            		System.out.println(personViewList.get(i).getAusStates());
+		            		targetAusStates = personViewList.get(i).getAusStates();
+	            		}
+	            }
+	            
+	            Stage secondaryStage3 = new Stage();
+	            
+	            start3(secondaryStage3,targetName,targetPhotopath,targetAge,targetGender,targetStatus,targetAusStates);
+	            
+	            //reset back to -1
+	            selectPersonIndex = -1;
+            }		
         });
+        
         // Registering a handler for button
         button4.setOnAction((ActionEvent event) -> {
             // Printing "4) Delete the selected person" to the console
             System.out.println("4) Delete the selected person");
+            if (selectPersonIndex == (-1))
+            		msgLabel.setText("Msg: Please select a person to delete.");
             if (selectPersonIndex > (-1))
             		System.out.println(personViewList.get(selectPersonIndex).getName());
             if (selectPersonIndex > (-1))
@@ -151,9 +167,11 @@ public class MiniNet extends Application
             		personViewList.remove(selectPersonIndex);
             		//reset the selectPersonIndex back to -1, if we delete the item successfully
             		selectPersonIndex = -1;
+            		msgLabel.setText("");
             }
             //Delete everything about this person from the network including profile, relationships
         });
+        
         // Registering a handler for button
         button5.setOnAction((ActionEvent event) -> {
             // Printing "5) Find out whether two people are directly connect in some ways" to the console
@@ -165,15 +183,30 @@ public class MiniNet extends Application
             //								  person2's name = inputbox2
             //print out "Yes, they are " + "relationship."
             //or 	    "No. they do not know each other."
-            System.out.println(relationshipViewList.get(0).getPerson1().getName());
-			System.out.println(relationshipViewList.get(0).getPerson2().getName());
-			System.out.println(relationshipViewList.get(0).getRelationship());
+            System.out.println(relationshipViewList.get(1).getPerson1().getName());
+			System.out.println(relationshipViewList.get(1).getPerson2().getName());
+			System.out.println(relationshipViewList.get(1).getRelationship());
+			
+			System.out.println("== Only related to Ben Turner ==");
+			for(int i = 0; i < relationshipViewList.size(); i++)	
+            {
+            		if (relationshipViewList.get(i).getPerson2().getName().equals("Ben Turner"))
+            		{
+            			System.out.println("= Relation =");
+            			System.out.println(relationshipViewList.get(i).getPerson1().getName());
+	            		System.out.println(relationshipViewList.get(i).getPerson2().getName());
+	            		System.out.println(relationshipViewList.get(i).getRelationship());
+            		}
+            }
+			//RelationshipDao relationshipDao;
+			//driver.setRelationshipDriverList(relationshipViewList);
 			
 			Stage secondaryStage5 = new Stage();
             
             start5(secondaryStage5);
 			
         });
+        
         // Registering a handler for button
         button6.setOnAction((ActionEvent event) -> {
             // Printing "6) Define relation between two people" to the console
@@ -196,6 +229,7 @@ public class MiniNet extends Application
                 
             start6(secondaryStage6);
         });
+        
         // Registering a handler for button
         button7.setOnAction((ActionEvent event) -> {
             // Printing "7) Find out the name(s) of the children or parents to the console
@@ -203,18 +237,40 @@ public class MiniNet extends Application
             //System.out.println(His/her Childrens' name are: )
             //System,out.println(His/her Parents' names are: +" MparentName "+ and + " +FparentName"")
             Stage secondaryStage7 = new Stage();
-            //if parents
-            String mparentName = "Ben Turner"; 
-            String fparentName = "Zoe Foster";
-            //if children
-            String children1 = "Hannah White";
-            String children2 = "Mark Turner";
-            String condition = "parents";
-            if (condition.equals("parents"))
-            		start7(secondaryStage7, mparentName, fparentName);
-            else
-            		start7(secondaryStage7, children1, children2);
+            
+            if (selectPersonIndex == (-1))
+        		msgLabel.setText("Msg: Please select a person to display.");
+            else if (selectPersonIndex != (-1))
+            {
+            		String condition = "normal";	
+            		//if has parents (must be a Children or Young child, age <= 16)
+            		if (personViewList.get(selectPersonIndex).getAge() <= 16)
+            		{
+	            		condition = "hasParents";	
+	            	
+		            String mparentName = "Ben Turner"; 
+		            String fparentName = "Zoe Foster";
+            		}
+	            
+            		if (personViewList.get(selectPersonIndex).getAge() > 16)
+            			condition = "hasChildren";
+            		//if has child (must be a Children or Young child, age <= 16)
+	            if (personViewList.get(selectPersonIndex).getAge() > 16 && condition == "hasChildren")
+	            {
+		            //if has children
+		            String children1 = "Susan Turner";
+		            String children2 = "Mark Turner";
+	            }
+	            
+	            start7(secondaryStage7, "Ben Turner", "Zoe Foster");
+	            		
+	            if (condition.equals("hasChildren"))
+	            		start7(secondaryStage7, "", ""); //"Susan Turner" and "Mark Turner"
+	            
+	            
+            }
         });
+        
         // Registering a handler for button
         button8.setOnAction((ActionEvent event) -> {
             // Printing "8) Exit" to the console
@@ -222,22 +278,26 @@ public class MiniNet extends Application
             System.out.println("8) Exit");
             stop();
         });
+        
         // Initializing the StackPane class
         // final StackPane root = new StackPane();
 
         // Initializing the VBox class
         final VBox root = new VBox();
-        // Adding all the nodes to the StackPane
+        // Adding all the nodes to the Vbox
         
         root.setSpacing(20);
         root.setAlignment(Pos.CENTER);
           
-        root.getChildren().addAll(button, button2, button3, button4, button5, button6, button7, button8);
+        root.getChildren().addAll(button, button2, button3, button4, button5, button6, button7, button8, msgLabel);
         
         // Creating a scene object
-        final Scene scene = new Scene(root, 600, 500);
-		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
-		// Adding the title to the window (primaryStage)
+        final Scene scene = new Scene(root, 640, 480);
+		
+        //Remove get Style from CSS
+        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+		
+        // Adding the title to the window (primaryStage)
         primaryStage.setTitle("MiniNet");
         primaryStage.setScene(scene);
         // Show the window(primaryStage)
@@ -368,11 +428,14 @@ public class MiniNet extends Application
     		grid.setAlignment(Pos.CENTER);
         
         // Creating a scene object
-        final Scene scene = new Scene(grid, 400, 350);
+        final Scene scene = new Scene(grid, 400, 300);
         // Adding the title to the window (primaryStage)
-        secondaryStage1.setTitle("Add Person to the network");
+        secondaryStage1.setTitle("Add a Person to the network");
         secondaryStage1.setScene(scene);
-		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+		
+        //Remove get Style from CSS
+        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+        
         // Show the window(primaryStage)
         secondaryStage1.show();
     }
@@ -463,6 +526,8 @@ public class MiniNet extends Application
     		    public void handle(ActionEvent e) {
     				selectNo.clear();
     		        label.setText(null);
+    		        //reset the selectPersonIndex while user press clear 
+    		        selectPersonIndex = -1;
     		    }
     	});
     		
@@ -475,7 +540,10 @@ public class MiniNet extends Application
         // Adding the title to the window (primaryStage)
         secondaryStage2.setTitle("Select a person from network");
         secondaryStage2.setScene(scene);
-		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+		
+        //Remove get Style from CSS
+        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+        
         // Show the window(primaryStage)
         secondaryStage2.show();
 }
@@ -550,14 +618,17 @@ public class MiniNet extends Application
 
         // Adding all the nodes to the StackPane
         //grid.getChildren().addAll();
-    	grid.setAlignment(Pos.CENTER);
+    		grid.setAlignment(Pos.CENTER);
     
         // Creating a scene object
         final Scene scene = new Scene(grid, 400, 300);
         // Adding the title to the window (primaryStage)
         secondaryStage3.setTitle("Display the profile");
         secondaryStage3.setScene(scene);
-		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+		
+        //Remove get Style from CSS
+        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+        
         // Show the window(primaryStage)
         secondaryStage3.show();
     }
@@ -569,7 +640,10 @@ public class MiniNet extends Application
      * @return 
      */
     public void start5(Stage secondaryStage5) 
-    {    	
+    {
+		//Create a driver class to for relationship CRUD operation
+    		driver = new Driver(personViewList,relationshipViewList);
+		
 	    	//Creating a GridPane container
 	    	GridPane grid = new GridPane();
 	    	grid.setPadding(new Insets(10, 10, 10, 10));
@@ -589,13 +663,6 @@ public class MiniNet extends Application
 	    	secondName.setPromptText("Enter person2's name.");
 	    	GridPane.setConstraints(secondName, 0, 1);
 	    	grid.getChildren().add(secondName);
-	    	
-	    	//Defining the Comment text field
-	    	final TextField comment = new TextField();
-	    	comment.setPrefColumnCount(15);
-	    	comment.setPromptText("Enter your comment.");
-	    	GridPane.setConstraints(comment, 0, 6);
-	    	grid.getChildren().add(comment);
 	    	
 	    	//Defining the Submit button
 	    	Button submit = new Button("Submit");
@@ -619,13 +686,20 @@ public class MiniNet extends Application
 	    		@Override
 	    	    public void handle(ActionEvent e) 
 	    		{
-	    	        if ((comment.getText() != null && !comment.getText().isEmpty())) 
+	    	        if ((name.getText() != null && !name.getText().isEmpty())) 
 	    	        {
 	    	            //make a String to show msg
-                        label.setText(name.getText() + " and " + secondName.getText()
-                            + " are currently " + comment.getText() + "!");
+	    	        		String searchResult = driver.searchRelationship(name.getText(),secondName.getText());
+	    	        		if (!searchResult.equals(""))
+	    	        		label.setText(secondName.getText() + " is " + name.getText() + "'s "
+                            + searchResult + "!");
+	    	        		
+	    	        		else
+	    	        			label.setText(name.getText() + " and " + secondName.getText() + " have no connections!");
+                        
+                        
 	    	        } else {
-	    	            label.setText("You have not left a comment.");
+	    	            label.setText("You have not left a name.");
 	    	        }
 	    	     }
     		});
@@ -644,14 +718,17 @@ public class MiniNet extends Application
     		
             // Adding all the nodes to the StackPane
             //grid.getChildren().addAll();
-        	grid.setAlignment(Pos.CENTER);
+	    		grid.setAlignment(Pos.CENTER);
             
             // Creating a scene object
-            final Scene scene = new Scene(grid, 400, 300);
+            final Scene scene = new Scene(grid, 500, 300);
             // Adding the title to the window (primaryStage)
             secondaryStage5.setTitle("Find out whether two people are directly connect in some ways");
             secondaryStage5.setScene(scene);
-		    scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+            
+            //Remove get Style from CSS
+            //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+            
             // Show the window(primaryStage)
             secondaryStage5.show();
     }
@@ -676,7 +753,10 @@ public class MiniNet extends Application
      */
     public void start6(Stage secondaryStage6) 
     {
-	    	//Creating a GridPane container
+    		//Create a driver class to for relationship CRUD operation
+		driver = new Driver(personViewList,relationshipViewList);
+    	
+    		//Creating a GridPane container
 	    	GridPane grid = new GridPane();
 	    	grid.setPadding(new Insets(10, 10, 10, 10));
 	    	grid.setVgap(5);
@@ -697,11 +777,11 @@ public class MiniNet extends Application
 	    	grid.getChildren().add(secondName);
 	    	
 	    	//Defining the Comment text field
-	    	final TextField comment = new TextField();
-	    	comment.setPrefColumnCount(15);
-	    	comment.setPromptText("Enter the relationship they are.");
-	    	GridPane.setConstraints(comment, 0, 6);
-	    	grid.getChildren().add(comment);
+	    	final TextField insertRelationship = new TextField();
+	    	insertRelationship.setPrefColumnCount(15);
+	    	insertRelationship.setPromptText("Enter the relationship they are.");
+	    	GridPane.setConstraints(insertRelationship, 0, 2);
+	    	grid.getChildren().add(insertRelationship);
 	    	
 	    	//Defining the Submit button
 	    	Button submit = new Button("Submit");
@@ -725,13 +805,15 @@ public class MiniNet extends Application
 	    		@Override
 	    	    public void handle(ActionEvent e) 
 	    		{
-	    	        if ((comment.getText() != null && !comment.getText().isEmpty())) 
+	    	        if ((insertRelationship.getText() != null && !insertRelationship.getText().isEmpty())) 
 	    	        {
 	    	            //make a string to show msg
                         label.setText(name.getText() + " and " + secondName.getText()
-	    	                + " now became " + comment.getText() + "!");
+	    	                + " now became " + insertRelationship.getText() + "!");
+                        //renew relationshipViewList
+                        relationshipViewList = driver.addRelationship(name.getText(),secondName.getText(),insertRelationship.getText());
 	    	        } else {
-	    	            label.setText("You have not left a comment.");
+	    	            label.setText("You have not left a relationship.");
 	    	        }
 	    	     }
 			});
@@ -744,6 +826,7 @@ public class MiniNet extends Application
 	    		{
 	    	        name.clear();
 	    	        secondName.clear();
+	    	        insertRelationship.clear();
 	    	        label.setText(null);
 	    	    }
 	    	});
@@ -757,7 +840,10 @@ public class MiniNet extends Application
 	    // Adding the title to the window (primaryStage)
 	    secondaryStage6.setTitle("Define relation between two people");
 	    secondaryStage6.setScene(scene);
-		scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+		
+	    //Remove get Style from CSS
+	    //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+	    
 	    // Show the window(primaryStage)
 	    secondaryStage6.show();
 
@@ -830,14 +916,17 @@ public class MiniNet extends Application
     	    // Adding the title to the window (primaryStage)
     	    secondaryStage7.setTitle("Find out the name(s) of the children or parents");
     	    secondaryStage7.setScene(scene);
-		    scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+		
+    	    //Remove get Style from CSS
+    	    //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+    	    
     	    // Show the window(primaryStage)
     	    secondaryStage7.show();
 	    
     }
     
     /**
-     * Main function that opens the "Hello World!" window
+     * Main function that opens the "MiniNet" window
      * 
      * @param args the command line arguments
      */
