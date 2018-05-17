@@ -1,4 +1,7 @@
-public class NoSuchAgeException extends Exception 
+/**
+ * Class used to check and catch NoSuchAgeException
+ */
+public class NoSuchAgeException extends Exception
 {
 	
 	public NoSuchAgeException(String errMsg, int personAge) 

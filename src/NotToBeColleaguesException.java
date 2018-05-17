@@ -1,4 +1,7 @@
-public class NotToBeColleaguesException extends Exception 
+/**
+ * Class used to check and catch NotToBeColleaguesException
+ */
+public class NotToBeColleaguesException extends Exception
  {
  	
  	public NotToBeColleaguesException(String errMsg, int person1age, int person2age) 

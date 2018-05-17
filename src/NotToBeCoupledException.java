@@ -1,4 +1,7 @@
-public class NotToBeCoupledException extends Exception 
+/**
+ * Class used to check and catch NotToBeCoupledException
+ */
+public class NotToBeCoupledException extends Exception
 {
 	
 	public NotToBeCoupledException(String errMsg, int person1age, int person2age) 

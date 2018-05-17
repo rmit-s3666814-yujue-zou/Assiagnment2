@@ -1,4 +1,8 @@
-public class TooYoungException extends Exception 
+/**
+ * Class used to check and catch TooYoungException
+ */
+
+public class TooYoungException extends Exception
 {
 	
 	public TooYoungException(String errMsg, int age) 

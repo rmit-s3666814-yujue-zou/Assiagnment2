@@ -1,4 +1,8 @@
-public class NoParentException extends Exception 
+/**
+ * Class used to check and catch NoParentException
+ */
+
+public class NoParentException extends Exception
 {
 	
 	public NoParentException(String errMsg, Adults adult1, Adults adult2) 

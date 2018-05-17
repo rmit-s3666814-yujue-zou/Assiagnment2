@@ -1,4 +1,7 @@
-//NotToBeClassmatesException
+/**
+ * Class used to check and catch NotToBeClassmatesException
+ */
+
 
 public class NotToBeClassmatesException extends Exception 
  {

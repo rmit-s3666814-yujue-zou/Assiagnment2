@@ -1,4 +1,7 @@
-public class NoAvailableException extends Exception 
+/**
+ * Class used to check and catch NoAvailableException
+ */
+public class NoAvailableException extends Exception
 {
 	
 	public NoAvailableException(String errMsg, Adults adult1, Adults adult2) 
