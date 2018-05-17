@@ -1,3 +1,9 @@
+/**
+ * Write a description of class RelationshipDao here.
+ *
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 16/05/2018
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
