@@ -1,7 +1,7 @@
 /**
  * Write a description of class PeopleDao here.
  *
- * @author Jyh-woei Yang, Yujue Zou
+ * @author Jyh-woei Yang
  * @version 16/05/2018
  */
 
