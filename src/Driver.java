@@ -17,7 +17,6 @@ import java.util.ArrayList;
  	/**
  	 * Constructor for objects of class Driver
  	 */
-
  	public Driver()
  	{
  		// initialise instance variables
@@ -25,6 +24,13 @@ import java.util.ArrayList;
  		relationshipDriverList = new ArrayList<Relationship>();
  	}
  	
+    /**
+     * Constructor for objects of class Driver
+     * 
+     * @param  personList an ArrayList of person
+     * @param  relationshipList an ArrayList of relationship
+     * @return 
+     */
  	public Driver(ArrayList<Person> personList,ArrayList<Relationship> relationshipList)
  	{
  		// initialise instance variables
@@ -39,17 +45,35 @@ import java.util.ArrayList;
  	}
 
  	//data getter
+    /**
+     * A method to let DB source create a result list and get ready to pass it onto view
+     * 
+     * @param  
+     * @return a list of person
+     */
  	public ArrayList<Person> getPersonDriverList()
  	{
  		return personDriverList;
  	}
  	
+    /**
+     * A method to let DB source create a result list and get ready to pass it onto view
+     * 
+     * @param  
+     * @return a list of person
+     */
  	public ArrayList<Relationship> getRelationshipDriverList()
  	{
  		return relationshipDriverList;
  	}
  	
  	//data setter
+    /**
+     * A method to set personList for driver use
+     * 
+     * @param  personList an ArrayList of person
+     * @return 
+     */
  	public void setPersonDriverList(ArrayList<Person> personList)
  	{
  		personDriverList.clear();
@@ -57,6 +81,12 @@ import java.util.ArrayList;
  			personDriverList.add(personList.get(i));
  	}
  	
+    /**
+     * A method to set personList for driver use
+     * 
+     * @param  relationshipList an ArrayList of relationship
+     * @return 
+     */
  	public void setRelationshipDriverList(ArrayList<Relationship> relationshipList)
  	{
  		relationshipDriverList.clear();
@@ -64,6 +94,13 @@ import java.util.ArrayList;
  			relationshipDriverList.add(relationshipList.get(i));
  	}
  	
+ 	 /**
+     * A method to search Relationship
+     * 
+     * @param  person1Name a String of person1's name
+     * @param  person2Name a String of person2's name
+     * @return String a relationship between person1 and person2 
+     */
  	public String searchRelationship(String person1Name,String person2Name)
  	{
  		int count = 0;
@@ -102,6 +139,14 @@ import java.util.ArrayList;
  		return "";
  	}
  	
+	 /**
+     * A method to add Relationship
+     * 
+     * @param  person1Name a String of person1's name
+     * @param  person2Name a String of person2's name
+     * @param  relationship a String of relationship
+     * @return An Array List of updated relationships 
+     */
  	public ArrayList<Relationship> addRelationship(String Person1, String Person2, String relationship)
  	{
  		Person person1 = new Person();
@@ -114,6 +159,12 @@ import java.util.ArrayList;
  		return getRelationshipDriverList();
  	}
  	
+	 /**
+     * A method to get Father's name
+     * 
+     * @param  searchPerson a person object
+     * @return String this person's father name
+     */
  	public String getFatherName(Person searchPerson)
  	{
  		String fatherName = "";
@@ -135,6 +186,12 @@ import java.util.ArrayList;
 		return fatherName;
 	}
  	
+	 /**
+     * A method to get Mother's name
+     * 
+     * @param  searchPerson a person object
+     * @return String this person's mother name
+     */
  	public String getMotherName(Person searchPerson)
  	{
  		String motherName = "";
@@ -155,6 +212,13 @@ import java.util.ArrayList;
 		}	
 		return motherName;
 	}
+ 	
+	 /**
+     * A method to get Children's names
+     * 
+     * @param  searchPerson a person object
+     * @return String this person's children names
+     */
  	public String getChildrenList(Person searchPerson)
  	{
  		String myChildrenString = "";

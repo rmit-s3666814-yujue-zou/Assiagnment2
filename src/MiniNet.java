@@ -1,7 +1,7 @@
 /**
  * This is a startup class named MiniNet. It also present the view layer of the application.
  *
- * @author Jyh-woei Yang, Yujue ZOu
+ * @author Jyh-woei Yang, Yujue Zou
  * @version 17/05/2018
  */
 
@@ -47,15 +47,17 @@ public class MiniNet extends Application
         //can carry out code to set up your app.
         //It runs once before the start method,
         //and after the constructor.
-    	
+
+        //Loading data from text file
+        peopleDao.loadPeopleFile();
+
         //Loading data from database
-    		peopleDao.readfile();
-    		//Loading data from text file
-    		//peopleDao.loadPeopleFile();
-    		personViewList = peopleDao.getResultList();
-    		relationshipDao.loadRelationshipFile();
-    		relationshipViewList = relationshipDao.getResultList();
-    		driver = new Driver(personViewList,relationshipViewList);
+    	//peopleDao.readfile();
+    		
+    	personViewList = peopleDao.getResultList();
+    	relationshipDao.loadRelationshipFile();
+    	relationshipViewList = relationshipDao.getResultList();
+    	driver = new Driver(personViewList,relationshipViewList);
     }
     
     @Override
