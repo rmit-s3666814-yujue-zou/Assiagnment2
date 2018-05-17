@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * This is a driver class named Driver. It also present the controller (business logic) layer of the application.
  *
  * @author Jyh-woei Yang
- * @version 29/04/2018
+ * @version 17/05/2018
  */
 
 
@@ -112,5 +112,87 @@ import java.util.ArrayList;
  		Relationship insertRelationship = new Relationship(person1, person2, relationship);
  		relationshipDriverList.add(insertRelationship);
  		return getRelationshipDriverList();
+ 	}
+ 	
+ 	public String getFatherName(Person searchPerson)
+ 	{
+ 		String fatherName = "";
+		for(int i = 0; i < relationshipDriverList.size(); i++)
+		{	
+			if(relationshipDriverList.get(i).getPerson1().getName().equals(searchPerson.getName()))
+ 			{
+ 				if(relationshipDriverList.get(i).getRelationship().trim().equals("father"))
+ 				{
+ 					//Generate myChildString, if father
+ 					System.out.println("= My Father: "+relationshipDriverList.get(i).getPerson2().getName());
+	 				if (fatherName.equals(""))
+	 				{
+	 					fatherName = relationshipDriverList.get(i).getPerson2().getName();
+	 				}
+ 				}
+ 			}
+		}	
+		return fatherName;
+	}
+ 	
+ 	public String getMotherName(Person searchPerson)
+ 	{
+ 		String motherName = "";
+		for(int i = 0; i < relationshipDriverList.size(); i++)
+		{	
+			if(relationshipDriverList.get(i).getPerson1().getName().equals(searchPerson.getName()))
+ 			{
+ 				if(relationshipDriverList.get(i).getRelationship().trim().equals("mother"))
+ 				{
+ 					//Generate myChildString, if father
+ 					System.out.println("= My Mother: "+relationshipDriverList.get(i).getPerson2().getName());
+	 				if (motherName.equals(""))
+	 				{
+	 					motherName = relationshipDriverList.get(i).getPerson2().getName();
+	 				}
+ 				}
+ 			}
+		}	
+		return motherName;
+	}
+ 	public String getChildrenList(Person searchPerson)
+ 	{
+ 		String myChildrenString = "";
+ 		for(int i = 0; i < relationshipDriverList.size(); i++)
+ 		{
+ 			System.out.println(relationshipDriverList.get(i).getPerson1().getName());
+ 			System.out.println(relationshipDriverList.get(i).getPerson2().getName());
+ 			System.out.println(relationshipDriverList.get(i).getRelationship());
+ 			if(relationshipDriverList.get(i).getPerson2().getName().equals(searchPerson.getName()))
+ 			{
+ 				if(relationshipDriverList.get(i).getRelationship().trim().equals("father"))
+ 				{
+ 					//Generate myChildString, if father
+ 					System.out.println("= My Children: "+relationshipDriverList.get(i).getPerson1().getName());
+	 				if (myChildrenString.equals(""))
+	 				{
+	 					myChildrenString = relationshipDriverList.get(i).getPerson1().getName();
+	 				}
+	 				else if (!myChildrenString.equals(""))
+	 				{
+	 					myChildrenString = myChildrenString + "," + relationshipDriverList.get(i).getPerson1().getName();
+	 				}
+	 			}else if(relationshipDriverList.get(i).getRelationship().trim().equals("mother"))
+	 			{
+	 				//Generate myChildString, if mother
+	 				System.out.println("= My Children: "+relationshipDriverList.get(i).getPerson1().getName());
+	 				if (myChildrenString.equals(""))
+	 				{
+	 					myChildrenString = relationshipDriverList.get(i).getPerson1().getName();
+	 				}
+	 				else if (!myChildrenString.equals(""))
+	 				{
+	 					myChildrenString = myChildrenString + "," + relationshipDriverList.get(i).getPerson1().getName();
+	 				}
+	 			}
+ 				
+ 			}
+ 		}
+ 		return myChildrenString;
  	}
  } 
