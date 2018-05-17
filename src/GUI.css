@@ -1,4 +1,9 @@
-
+/**
+ *  Class used to design the type of GUI scene and buttons.
+ *
+ * @author Yujue Zou
+ * @version 16/05/2018
+ */
 .root {
     -fx-font-family: "Tempus Sans ITC";
     -fx-font-size: 16px;
