@@ -63,9 +63,11 @@ import java.io.*;
         catch(FileNotFoundException exception)
         {
             System.out.println(fileName + " not found");
+            readfile();
         }
         catch(IOException e){
             System.out.println("Error: Invalid file");
+            readfile();
         }
     }
 
