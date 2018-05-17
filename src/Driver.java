@@ -24,6 +24,19 @@ import java.util.ArrayList;
  		personDriverList = new ArrayList<Person>();
  		relationshipDriverList = new ArrayList<Relationship>();
  	}
+ 	
+ 	public Driver(ArrayList<Person> personList,ArrayList<Relationship> relationshipList)
+ 	{
+ 		// initialise instance variables
+ 		personDriverList = new ArrayList<Person>();
+ 		this.personDriverList.clear();
+ 		for (int i = 0; i < personList.size(); i++)
+ 			this.personDriverList.add(personList.get(i));
+ 		relationshipDriverList = new ArrayList<Relationship>();
+ 		relationshipDriverList.clear();
+ 		for (int i = 0; i < relationshipList.size(); i++)
+ 			this.relationshipDriverList.add(relationshipList.get(i));
+ 	}
 
  	//data getter
  	public ArrayList<Person> getPersonDriverList()
@@ -51,7 +64,45 @@ import java.util.ArrayList;
  			relationshipDriverList.add(relationshipList.get(i));
  	}
  	
- 	public void addRelationship(String Person1, String Person2, String relationship)
+ 	public String searchRelationship(String person1Name,String person2Name)
+ 	{
+ 		int count = 0;
+ 		for(int i = 0; i < relationshipDriverList.size(); i++)	
+        {
+ 			count++;
+ 			System.out.println(count);
+ 			if (relationshipDriverList.get(i).getPerson2().getName().equals(person2Name))
+ 			{
+	        		if (relationshipDriverList.get(i).getPerson1().getName().equals(person1Name))
+	        		{
+	        			System.out.println("(1)");
+	            		System.out.println("Name:" + relationshipDriverList.get(i).getPerson1().getName());
+	            		System.out.println(relationshipDriverList.get(i).getPerson2().getName());
+	            		System.out.println(relationshipDriverList.get(i).getRelationship());
+	            		return relationshipDriverList.get(i).getRelationship();
+	        		}
+ 			}
+        }
+ 		
+ 		for(int i = 0; i < relationshipDriverList.size(); i++)
+ 		{
+ 			if (relationshipDriverList.get(i).getPerson2().getName().equals(person1Name))
+ 			{
+	        		if (relationshipDriverList.get(i).getPerson1().getName().equals(person2Name))
+	        		{
+	        			System.out.println("(2)");
+	            		System.out.println("Name:" + relationshipDriverList.get(i).getPerson1().getName());
+	            		System.out.println(relationshipDriverList.get(i).getPerson2().getName());
+	            		System.out.println(relationshipDriverList.get(i).getRelationship());
+	            		return relationshipDriverList.get(i).getRelationship();
+	        		}
+ 			}
+ 		}
+ 		
+ 		return "";
+ 	}
+ 	
+ 	public ArrayList<Relationship> addRelationship(String Person1, String Person2, String relationship)
  	{
  		Person person1 = new Person();
  		person1.setName(Person1);
@@ -60,5 +111,6 @@ import java.util.ArrayList;
  		relationship = "friends";
  		Relationship insertRelationship = new Relationship(person1, person2, relationship);
  		relationshipDriverList.add(insertRelationship);
+ 		return getRelationshipDriverList();
  	}
  } 

@@ -1,9 +1,4 @@
-/**
- *  File used to design the type of GUI scene and buttons.
- *
- * @author Yujue Zou
- * @version 16/05/2018
- */
+
 .root {
     -fx-font-family: "Tempus Sans ITC";
     -fx-font-size: 16px;
@@ -18,4 +13,11 @@
 
 .button:hover {
     -fx-background-color: pink;
+}
+
+
+#lblTitle {
+    -fx-font-size: 20px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: darkslategray;
 }
