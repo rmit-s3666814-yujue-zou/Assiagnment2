@@ -1,7 +1,7 @@
 /**
  * This is a startup class named MiniNet. It also present the view layer of the application.
  *
- * @author Jyh-woei Yang
+ * @author Jyh-woei Yang, Yujue ZOu
  * @version 17/05/2018
  */
 
