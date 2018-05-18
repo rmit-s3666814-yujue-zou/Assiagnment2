@@ -52,7 +52,7 @@ public class MiniNet extends Application
         peopleDao.loadPeopleFile();
 
         //Loading data from database
-    	//peopleDao.readfile();
+    //peopleDao.readfile();
     		
     	personViewList = peopleDao.getResultList();
     	relationshipDao.loadRelationshipFile();
@@ -81,7 +81,7 @@ public class MiniNet extends Application
         button4.setText(" Delete selected person ");
         button5.setText("       Find connection        ");
         button6.setText("      Define relationship     ");
-        button7.setText("       Show relationship      ");
+        button7.setText("       Find the families      ");
         button8.setText("             Exit             ");
         msgLabel.setText("");
         
@@ -315,8 +315,8 @@ public class MiniNet extends Application
         // Creating a scene object
         final Scene scene = new Scene(root, 640, 480);
 		
-        //Remove get Style from CSS
-        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+        //Get Style from CSS
+        scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
 		
         // Adding the title to the window (primaryStage)
         primaryStage.setTitle("MiniNet");
@@ -446,8 +446,8 @@ public class MiniNet extends Application
         secondaryStage1.setTitle("Add a Person to the network");
         secondaryStage1.setScene(scene);
 		
-        //Remove get Style from CSS
-        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+        //Get Style from CSS
+        scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
         
         // Show the window(primaryStage)
         secondaryStage1.show();
@@ -554,8 +554,8 @@ public class MiniNet extends Application
         secondaryStage2.setTitle("Select a person from network");
         secondaryStage2.setScene(scene);
 		
-        //Remove get Style from CSS
-        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+        //Get Style from CSS
+        scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
         
         // Show the window(primaryStage)
         secondaryStage2.show();
@@ -639,8 +639,8 @@ public class MiniNet extends Application
         secondaryStage3.setTitle("Display the profile");
         secondaryStage3.setScene(scene);
 		
-        //Remove get Style from CSS
-        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+        //Get Style from CSS
+        scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
         
         // Show the window(primaryStage)
         secondaryStage3.show();
@@ -739,8 +739,8 @@ public class MiniNet extends Application
             secondaryStage5.setTitle("Find out whether two people are directly connect in some ways");
             secondaryStage5.setScene(scene);
             
-            //Remove get Style from CSS
-            //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+            //Get Style from CSS
+            scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
             
             // Show the window(primaryStage)
             secondaryStage5.show();
@@ -854,8 +854,8 @@ public class MiniNet extends Application
 	    secondaryStage6.setTitle("Define relation between two people");
 	    secondaryStage6.setScene(scene);
 		
-	    //Remove get Style from CSS
-	    //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+	    //Get Style from CSS
+	    scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
 	    
 	    // Show the window(primaryStage)
 	    secondaryStage6.show();
@@ -938,8 +938,8 @@ public class MiniNet extends Application
     	    secondaryStage7.setTitle("Find out the name(s) of the children or parents");
     	    secondaryStage7.setScene(scene);
 		
-    	    //Remove get Style from CSS
-    	    //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+    	    //Get Style from CSS
+    	    scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
     	    
     	    // Show the window(primaryStage)
     	    secondaryStage7.show();
