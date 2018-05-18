@@ -4,6 +4,11 @@
 public class NoSuchAgeException extends Exception
 {
 	
+	public NoSuchAgeException() 
+	{
+		super();
+	} 
+	
 	public NoSuchAgeException(String errMsg, int personAge) 
 	{
 		super(errMsg); 

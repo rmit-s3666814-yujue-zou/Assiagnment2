@@ -400,24 +400,43 @@ public class MiniNet extends Application
 	    		@Override
 	    	    public void handle(ActionEvent e) 
 	    		{
-	    	        if ((name.getText() != null && !name.getText().isEmpty())) 
-	    	        {
 
-	    	            label.setText(name.getText() + " " + lastName.getText()
-	    	                + " are now successfully added \ninto this Mini Network!");
-
-	    	            Person newPerson = new Person();
-	    	            newPerson.setName(name.getText() + " " + lastName.getText());
-	    	            newPerson.setPhotoPath("N/A");
-	    	            newPerson.setAge(convertStringtoInt(age.getText()));
-	    	            newPerson.setGender(gender.getText().charAt(0));
-	    	            newPerson.setStatus(status.getText());
-	    	            newPerson.setAusStates(ausStates.getText());
-	    	            personViewList.add(newPerson);
-	    	        } else {
-	    	            label.setText("You have not insert a name.");
+		    			//test NoSuchAgeException
+		    			try {
+		    				NoSuchAgeException testException = new NoSuchAgeException("",convertStringtoInt(age.getText()));
+		    				testException.validNotSuchAge(convertStringtoInt(age.getText()));
+		    				
+		    				if ((name.getText() != null && !name.getText().isEmpty())) 
+			    	        {
+		
+			    	            label.setText(name.getText() + " " + lastName.getText()
+			    	                + " are now successfully added \ninto this Mini Network!");
+		
+			    	            Person newPerson = new Person();
+			    	            newPerson.setName(name.getText() + " " + lastName.getText());
+			    	            newPerson.setPhotoPath("N/A");
+				    	        	newPerson.setAge(convertStringtoInt(age.getText()));
+			    	            try {
+			    	            		newPerson.setGender(gender.getText().charAt(0));
+			    	            }
+			    	            catch (Exception stringIndexException)
+			    	            {
+			    	            		newPerson.setGender('M'); // set default = male
+			    	            }
+			    	            newPerson.setStatus(status.getText());
+			    	            newPerson.setAusStates(ausStates.getText());
+			    	            personViewList.add(newPerson);
+			    	            
+			    	        } else {
+			    	            label.setText("You have not insert a name.");
+			    	        }
+		    	        }
+		    			catch(NoSuchAgeException nsaException)
+		    			{
+		    				label.setText("Error message");
+		    			}
 	    	        }
-	    	     }
+	    	     
     		});
     	 
 	    	//Setting an action for the Clear button
@@ -818,18 +837,47 @@ public class MiniNet extends Application
 	    		@Override
 	    	    public void handle(ActionEvent e) 
 	    		{
-	    	        if ((insertRelationship.getText() != null && !insertRelationship.getText().isEmpty())) 
-	    	        {
-	    	            //make a string to show msg
-                        label.setText(name.getText() + " and " + secondName.getText()
-	    	                + " now became " + insertRelationship.getText() + "!");
-                        //renew relationshipViewList
-                        relationshipViewList = driver.addRelationship(name.getText(),secondName.getText(),insertRelationship.getText());
-	    	        } else {
-	    	            label.setText("You have not left a relationship.");
-	    	        }
-	    	     }
-			});
+	    			//Define if a person are not in this network
+	    			Boolean isPersonExisted = false;
+	    			for (int i = 0 ; i < personViewList.size(); i++ )
+	    			{
+	    				if(name.getText().trim().equals(personViewList.get(i).getName().trim()))
+	    				{
+	    					System.out.println(i);
+			    			for (int j = 0 ; j < personViewList.size(); j++ )
+			    			{
+			    				
+			    				if(secondName.getText().trim().equals(personViewList.get(j).getName().trim()))
+			    					{
+			    						isPersonExisted = true;
+			    						System.out.println(j);
+			    					}
+			    					
+			    			}
+	    				}
+	    			}
+	    			
+	    			if (insertRelationship.getText().equals("friends") || insertRelationship.getText().equals("colleagues") || insertRelationship.getText().equals("classmates"))
+	    			{
+		    			if ((insertRelationship.getText() != null && !insertRelationship.getText().isEmpty())) 
+		    	        {
+		    	            //make a string to show msg
+	                        label.setText(name.getText() + " and " + secondName.getText()
+		    	                + " now became " + insertRelationship.getText() + "!");
+	                        //renew relationshipViewList
+	                        relationshipViewList = driver.addRelationship(name.getText(),secondName.getText(),insertRelationship.getText());
+		    	        } else {
+		    	            label.setText("You have not left a relationship.");
+		    	        }
+	    			} else {
+	    				label.setText("Msg: You can only define as 'friends',\n 'colleagues or 'classmates'.");
+	    			}
+	    	     
+	    		if(!isPersonExisted)
+	    			label.setText("Msg: One of the people are not found in this \n"
+	    					+ "Network, please check your inserted names!");
+	    		}
+	    	});
 		 
 	    	//Setting an action for the Clear button
 	    	clear.setOnAction(new EventHandler<ActionEvent>() 
