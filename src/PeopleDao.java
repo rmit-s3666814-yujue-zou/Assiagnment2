@@ -97,7 +97,7 @@ import java.io.*;
      * @throws SQLException if there is a SQL error
      * @throws ClassNotFoundException while exception there is no class found
      */
- 	public void readfile() 
+ 	public void readfile()
  	{
  		Server hsqlServer = null;
  		Connection connection = null;
@@ -164,7 +164,7 @@ import java.io.*;
  	/**
      * Method to convert from String to Integer
      * 
-     * @param a String of input
+     * @param  a String of input
      * @return the Integer of out
      * @throws NumberFormatException if input is a non-number format
      */

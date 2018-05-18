@@ -313,8 +313,8 @@ public class MiniNet extends Application
         // Creating a scene object
         final Scene scene = new Scene(root, 640, 480);
 		
-        //Remove get Style from CSS
-        //scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
+        //Get Style from CSS
+        scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
 		
         // Adding the title to the window (primaryStage)
         primaryStage.setTitle("MiniNet");
