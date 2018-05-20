@@ -9,9 +9,8 @@ public class TooYoungException extends Exception
 	{
 		super(errMsg); 
 
-		System.out.println("Age " + age + " is too young."); 
-
-		System.out.println("Error message is: " + errMsg);
+		//System.out.println("Age " + age + " is too young."); 
+		//System.out.println("Error message is: " + errMsg);
 	} 
 
 //The withdraw() method in class Account can be re-defined accordingly:
