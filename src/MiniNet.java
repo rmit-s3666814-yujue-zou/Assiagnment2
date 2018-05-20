@@ -843,6 +843,9 @@ public class MiniNet extends Application
 	    			//Define Qualified relationship
 	    			Boolean isQualifiedRelationship = false;
 	    			
+	    			//Define is one person taken
+	    			Boolean isTaken = false; 
+	    			
 	    			//Define if a person are not in this network
 	    			Boolean isPersonExisted = false;
 	    			for (int i = 0 ; i < personViewList.size(); i++ )
@@ -869,7 +872,6 @@ public class MiniNet extends Application
 	    				{
 	    					if(name.getText().trim().equals(personViewList.get(i).getName().trim()))
 		    				{
-		    					System.out.println(i);
 		    					Person person1 = new Person();
 		    					person1.setAge(personViewList.get(i).getAge());
 		    					System.out.println("Person 1's age is "+ person1.getAge());
@@ -902,8 +904,145 @@ public class MiniNet extends Application
 				    			}
 		    				}
 	    				}
-
-		    			if (insertRelationship.getText().equals("friends") || insertRelationship.getText().equals("colleagues") || insertRelationship.getText().equals("classmates"))
+	    				
+	    				
+	    				//pass person1's name and person2's name to method isPersonTaken check if they can be couple
+	    				if (insertRelationship.getText().equals("couple"))
+	    				{
+		    				if(isPersonExisted)
+		    				{		
+		    					isTaken = isPersonTaken(name.getText(), secondName.getText());
+		    					
+		    					if (isTaken)
+		    					{
+		    						isPersonExisted = false;
+		    						isTaken = true;
+		    						isQualifiedRelationship = false;
+		    						System.out.println("Person2, one of them are taken!");
+		    					}
+		    					
+			    				if (!isTaken)
+			    				{
+			    					System.out.println("Person1 is not taken. Let test Person2.");
+			    					isTaken = isPersonTaken(secondName.getText(),name.getText());
+			    					
+			    					if (isTaken)
+			    					{
+			    						isPersonExisted = false;
+			    						isTaken = true;
+			    						isQualifiedRelationship = false;
+			    						System.out.println("Person1, one of them are taken!");
+			    					}
+			    				}
+		    				}
+		    					
+		    				
+		    				if(isPersonExisted && !isTaken)
+		    				{
+		    					Person person1 = new Person();
+		    					Person person2 = new Person();
+			    				for (int i = 0 ; i < relationshipViewList.size(); i++ )
+			    	    			{
+	
+			    		    				for (int peopleIndex = 0 ; peopleIndex < personViewList.size(); peopleIndex++ )
+			    		    				{
+			    		    					if(name.getText().trim().equals(personViewList.get(peopleIndex).getName().trim()))
+			    			    				{
+			    			    					
+			    			    					person1.setName(personViewList.get(peopleIndex).getName());
+			    			    					person1.setAge(personViewList.get(peopleIndex).getAge());
+			    			    					person1.setGender(personViewList.get(peopleIndex).getGender());
+			    			
+	//		    			    					System.out.println("Person 1's name is "+ person1.getName());
+	//		    			    					System.out.println("Person 1's age is "+ person1.getAge());
+	//		    			    					System.out.println(personViewList.get(peopleIndex).getGender()+"Person 1's gender is "+ person1.getGender());
+	//		    			    					
+			    					    			for (int j = 0 ; j < personViewList.size(); j++ )
+			    					    			{	
+			    					    				if(secondName.getText().trim().equals(personViewList.get(j).getName().trim()))
+			    					    				{
+			    					    					person2.setName(personViewList.get(j).getName());
+			    					    					person2.setAge(personViewList.get(j).getAge());
+			    					    					person2.setGender(personViewList.get(j).getGender());
+			    					    					
+	//		    					    					System.out.println("Person 2's name is "+ person2.getName());
+	//		    					    					System.out.println("Person 2's age is "+ person2.getAge());
+	//		    					    					System.out.println(personViewList.get(j).getGender()+"Person 2's gender is "+ person2.getGender());
+			    					    				}
+			    					    			}
+			    			    				}
+			    		    				}
+			    		    				
+						    	    		if(insertRelationship.getText().trim().equals(relationshipViewList.get(i).getRelationship().trim()))
+						    	    		{		
+				    	    					//if person1 is a child
+				    	    					if(person1.getAge() <= 16)
+				    	    					{
+				    	    						System.out.println(relationshipViewList.get(i).getPerson1().getAge()+"");
+				    	    						label.setText("Msg: You cannot set these two people\n"
+				    	    								+ "as couple, because person1 is a child!");
+				    	    						isQualifiedRelationship = false;
+				    	    										    	    						
+				    		            			try
+				    		            			{
+				    		            				NotToBeCoupledException ntbException = new NotToBeCoupledException("", relationshipViewList.get(i).getPerson2().getAge(), relationshipViewList.get(i).getPerson2().getAge());
+				    		            				ntbException.validNotToBeCoupled(relationshipViewList.get(i).getPerson2().getAge(), relationshipViewList.get(i).getPerson2().getAge());
+				    		            			}
+				    		            			catch(Exception ntbException1)
+				    		            			{
+				    		            				System.out.println("Err msg: Cannot be coupled exception!");
+				    		            			}
+				    	    					}
+				    	    					//if person2 is a child
+				    	    					if(person2.getAge() <= 16)
+						    	    			{
+				    	    						System.out.println(relationshipViewList.get(i).getPerson2().getAge()+"");
+				    	    						label.setText("Msg: You cannot set these two people\n"
+				    	    								+ "as couple, because person2 is a child!");
+				    	    						isQualifiedRelationship = false;
+				    	    						
+				    		            			try
+				    		            			{
+				    		            				NotToBeCoupledException ntbException = new NotToBeCoupledException("", relationshipViewList.get(i).getPerson2().getAge(), relationshipViewList.get(i).getPerson2().getAge());
+				    		            				ntbException.validNotToBeCoupled(relationshipViewList.get(i).getPerson2().getAge(), relationshipViewList.get(i).getPerson2().getAge());
+				    		            			}
+				    		            			catch(Exception ntbException1)
+				    		            			{
+				    		            				System.out.println("Err msg: Cannot be coupled exception!");
+				    		            			}
+				    	    					}
+				    	    					
+				    	    					//if person1 and person2 are both male
+				    	    					if(person1.getGender() == 'M')
+				    	    					{
+				    	    						if(person2.getGender() == 'M')
+				    	    						{
+					    	    						System.out.println(relationshipViewList.get(i).getPerson2().getAge()+"");
+					    	    						label.setText("Msg: You cannot set these two people\n"
+					    	    								+ "as couple, because person1 and person2 \n"
+					    	    								+ "are both male!");
+					    	    						isQualifiedRelationship = false;
+					    	    					}
+				    	    					}
+				    	    					
+				    	    					//if person1 and person2 are both female
+				    	    					if (person1.getGender() == 'F')
+				    	    					{
+				    	    						if(person2.getGender() == 'F')
+				    	    						{
+					    	    						System.out.println(relationshipViewList.get(i).getPerson2().getAge()+"");
+					    	    						label.setText("Msg: You cannot set these two people\n"
+					    	    								+ " as couple, because person1 and person2 \n"
+					    	    								+ "are both female!");
+					    	    						isQualifiedRelationship = false;
+					    	    					}	
+				    	    					}
+						    	    		}
+			    	    			}
+		    				}
+	    				}
+	    				
+		    			if (insertRelationship.getText().equals("friends") || insertRelationship.getText().equals("colleagues") || insertRelationship.getText().equals("classmates") || insertRelationship.getText().equals("couple"))
 		    			{
 			    			if ((insertRelationship.getText() != null && !insertRelationship.getText().isEmpty())) 
 			    	        {
@@ -920,13 +1059,17 @@ public class MiniNet extends Application
 			    	            label.setText("You have not left a relationship.");
 			    	        }
 		    			} else {
-		    				label.setText("Msg: You can only define as 'friends',\n 'colleagues or 'classmates'.");
+		    				label.setText("Msg: You can only define as 'friends',\n 'colleagues', 'classmates' or 'couple'.");
 		    			}
 	    			
 	    		}
-	    	     
+
 	    		if(!isPersonExisted)
 	    			label.setText("Msg: One of the people are not found in this \n"
+	    					+ "Network, please check your inserted names!");
+	    		
+	    		if (isTaken)
+	    			label.setText("Msg: One of the people are taken in this \n"
 	    					+ "Network, please check your inserted names!");
 	    		}
 	    	});
@@ -949,7 +1092,7 @@ public class MiniNet extends Application
 		grid.setAlignment(Pos.CENTER);
 	    
 	    // Creating a scene object
-	    final Scene scene = new Scene(grid, 400, 300);
+	    final Scene scene = new Scene(grid, 500, 300);
 	    // Adding the title to the window (primaryStage)
 	    secondaryStage6.setTitle("Define relation between two people");
 	    secondaryStage6.setScene(scene);
@@ -1045,6 +1188,73 @@ public class MiniNet extends Application
     	    secondaryStage7.show();
 	    
     }
+  
+    /**
+     * A method to show if the person is taken
+     * 
+ 	 * @param  person1Name a String of person1's name
+ 	 * @param  person2Name a String of person2's name
+ 	 * @return Boolean is Person1 or person2 are taken
+     */
+ 	
+ 	public Boolean isPersonTaken(String person1Name, String person2Name)
+ 	{
+ 		for(int i = 0; i < relationshipViewList.size(); i++)	
+        {	
+ 			if (relationshipViewList.get(i).getPerson2().getName().trim().equals(person2Name.trim()))
+ 			{
+ 				
+	        			System.out.println("(1)");
+	            		System.out.println("Name:" + relationshipViewList.get(i).getPerson1().getName());
+	            		System.out.println(relationshipViewList.get(i).getPerson2().getName());
+	            		System.out.println(relationshipViewList.get(i).getRelationship());
+	            		if(relationshipViewList.get(i).getRelationship().trim().equals("couple"))
+	            		{	
+	            			System.out.println("Tester found in Person2 position");
+	            			NotToBeCoupledException ntbException = new NotToBeCoupledException("", relationshipViewList.get(i).getPerson2().getAge(), relationshipViewList.get(i).getPerson2().getAge());
+	            			try
+	            			{
+	            				ntbException.validNotToBeCoupled(relationshipViewList.get(i).getPerson2().getAge(), relationshipViewList.get(i).getPerson2().getAge());
+	            			}
+	            			catch(Exception ntbException1){
+	            				System.out.println("Err msg: Cannot be coupled exception!");
+	            			}
+	            			return true;
+	            		}
+
+ 			}
+        }
+ 		
+ 		for(int i = 0; i < relationshipViewList.size(); i++)
+ 		{	
+ 			
+ 			if (relationshipViewList.get(i).getPerson1().getName().trim().equals(person2Name.trim()))
+ 			{
+
+	        			System.out.println("(2)");
+	            		System.out.println(relationshipViewList.get(i).getPerson1().getName());
+	            		System.out.println("Name:" +relationshipViewList.get(i).getPerson2().getName());
+	            		System.out.println(relationshipViewList.get(i).getRelationship().equals("couple"));
+	            		if(relationshipViewList.get(i).getRelationship().trim().equals("couple"))
+	            		{	
+	            			System.out.println("=Tester found in Person1 position=");
+	            			try
+	            			{
+	            				NotToBeCoupledException ntbException = new NotToBeCoupledException("", relationshipViewList.get(i).getPerson2().getAge(), relationshipViewList.get(i).getPerson2().getAge());
+	            				ntbException.validNotToBeCoupled(relationshipViewList.get(i).getPerson2().getAge(), relationshipViewList.get(i).getPerson2().getAge());
+	            			}
+	            			catch(Exception ntbException1)
+	            			{
+	            				System.out.println("Err msg: Cannot be coupled exception!");
+	            			}
+	            			return true;
+	            		}
+
+ 			}
+ 		}
+ 		
+ 		return false;
+ 	}
     
     /**
      * Main function that opens the "MiniNet" window
