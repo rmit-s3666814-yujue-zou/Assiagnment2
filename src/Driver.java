@@ -107,7 +107,8 @@ import java.util.ArrayList;
  		for(int i = 0; i < relationshipDriverList.size(); i++)	
         {
  			count++;
- 			System.out.println(count);
+ 			//print out count for debugging
+ 			//System.out.println(count);
  			if (relationshipDriverList.get(i).getPerson2().getName().equals(person2Name))
  			{
 	        		if (relationshipDriverList.get(i).getPerson1().getName().equals(person1Name))
@@ -222,8 +223,13 @@ import java.util.ArrayList;
  	public String getChildrenList(Person searchPerson)
  	{
  		String myChildrenString = "";
+ 		//print out to know the performance of generate myChildrenString
+ 		System.out.println("== Print out to know the performance of generate myChildrenString");
  		for(int i = 0; i < relationshipDriverList.size(); i++)
  		{
+ 			//print out to know the performance of generate myChildrenString
+ 			System.out.println("==");
+ 			System.out.println("relationship Object("+ i +")");
  			System.out.println(relationshipDriverList.get(i).getPerson1().getName());
  			System.out.println(relationshipDriverList.get(i).getPerson2().getName());
  			System.out.println(relationshipDriverList.get(i).getRelationship());

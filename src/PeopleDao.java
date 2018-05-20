@@ -141,28 +141,6 @@ import java.io.*;
 	 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
 	 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
  			}
- 			
-//			rs.next(); 			
-// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
-// 			rs.next();
-// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
-// 			rs.next();
-// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
-// 			rs.next();
-// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
-// 			rs.next();
-// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
-// 			System.out.println(rs.getString(1));
-// 			rs.next();
-// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
-// 			System.out.println(rs.getString(1));
- 			
  			connection.commit();
  		}catch (SQLSyntaxErrorException e2) {
 			e2.printStackTrace();

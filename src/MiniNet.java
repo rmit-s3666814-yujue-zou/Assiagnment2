@@ -269,7 +269,7 @@ public class MiniNet extends Application
             		//if has child (must be a Children or Young child, age <= 16)
 	            if (personViewList.get(selectPersonIndex).getAge() > 16 && condition.equals("hasChildren"))
 	            {
-		            //if has children
+		            //if has children, for example "Susan Turner" and "Mark Turner"
 		            String children1 = "Susan Turner";
 		            String children2 = "Mark Turner";
 	            }
@@ -840,41 +840,90 @@ public class MiniNet extends Application
 	    		@Override
 	    	    public void handle(ActionEvent e) 
 	    		{
+	    			//Define Qualified relationship
+	    			Boolean isQualifiedRelationship = false;
+	    			
 	    			//Define if a person are not in this network
 	    			Boolean isPersonExisted = false;
 	    			for (int i = 0 ; i < personViewList.size(); i++ )
 	    			{
 	    				if(name.getText().trim().equals(personViewList.get(i).getName().trim()))
 	    				{
-	    					System.out.println(i);
 			    			for (int j = 0 ; j < personViewList.size(); j++ )
 			    			{
 			    				
 			    				if(secondName.getText().trim().equals(personViewList.get(j).getName().trim()))
 			    					{
 			    						isPersonExisted = true;
-			    						System.out.println(j);
+			    						isQualifiedRelationship = true;
 			    					}
 			    					
 			    			}
 	    				}
 	    			}
 	    			
-	    			if (insertRelationship.getText().equals("friends") || insertRelationship.getText().equals("colleagues") || insertRelationship.getText().equals("classmates"))
+	    			//get person1 and person2's age for validation
+	    			if (isPersonExisted)
 	    			{
-		    			if ((insertRelationship.getText() != null && !insertRelationship.getText().isEmpty())) 
-		    	        {
-		    	            //make a string to show msg
-	                        label.setText(name.getText() + " and " + secondName.getText()
-		    	                + " now became " + insertRelationship.getText() + "!");
-	                        //renew relationshipViewList
-	                        relationshipViewList = driver.addRelationship(name.getText(),secondName.getText(),insertRelationship.getText());
-		    	        } else {
-		    	            label.setText("You have not left a relationship.");
-		    	        }
-	    			} else {
-	    				label.setText("Msg: You can only define as 'friends',\n 'colleagues or 'classmates'.");
-	    			}
+	    				for (int i = 0 ; i < personViewList.size(); i++ )
+	    				{
+	    					if(name.getText().trim().equals(personViewList.get(i).getName().trim()))
+		    				{
+		    					System.out.println(i);
+		    					Person person1 = new Person();
+		    					person1.setAge(personViewList.get(i).getAge());
+		    					System.out.println("Person 1's age is "+ person1.getAge());
+		    					
+				    			for (int j = 0 ; j < personViewList.size(); j++ )
+				    			{	
+				    				if(secondName.getText().trim().equals(personViewList.get(j).getName().trim()))
+				    				{
+				    					Person person2 = new Person();
+				    					person2.setAge(personViewList.get(j).getAge());
+				    					System.out.println("Person 2's age is "+ person2.getAge());
+				    						
+				    					if(person1.getAge() < 3 || person2.getAge() < 3)
+									{
+			    							try 
+			    							{
+			    								TooYoungException tyException1 = new TooYoungException("",person1.getAge());
+			    								tyException1.validTooYoung(person1.getAge());				    								
+			    								TooYoungException tyException2 = new TooYoungException("",person2.getAge());
+				    							tyException2.validTooYoung(person2.getAge());
+				    						}
+				    						catch(TooYoungException tyException){
+				    							if (!insertRelationship.getText().isEmpty())
+				    								label.setText("Too Young Exception: \n"
+				    										+ "One of the people are too young \nto be "+ insertRelationship.getText() +".");
+				    							isQualifiedRelationship = false;
+				    						}						
+				    					}  						
+				    				}	
+				    			}
+		    				}
+	    				}
+
+		    			if (insertRelationship.getText().equals("friends") || insertRelationship.getText().equals("colleagues") || insertRelationship.getText().equals("classmates"))
+		    			{
+			    			if ((insertRelationship.getText() != null && !insertRelationship.getText().isEmpty())) 
+			    	        {
+			    	            //make a string to show msg
+			    					if (isQualifiedRelationship)
+			    					{
+				                     label.setText(name.getText() + " and " + secondName.getText()
+					    	             + " now became " + insertRelationship.getText() + "!");
+				                     //renew relationshipViewList
+				                     relationshipViewList = driver.addRelationship(name.getText(),secondName.getText(),insertRelationship.getText());
+				    					System.out.println("A Relationship has been added into this Network.");
+			    					}
+			    			} else {
+			    	            label.setText("You have not left a relationship.");
+			    	        }
+		    			} else {
+		    				label.setText("Msg: You can only define as 'friends',\n 'colleagues or 'classmates'.");
+		    			}
+	    			
+	    		}
 	    	     
 	    		if(!isPersonExisted)
 	    			label.setText("Msg: One of the people are not found in this \n"
