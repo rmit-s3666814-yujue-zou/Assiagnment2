@@ -17,9 +17,9 @@ public class NotToBeFriendsException extends Exception
 	{
 		super(errMsg); 
 
-		System.out.println("Age:" + person1age + " is older than "+ person2age +" over 3 years.");
-		System.out.println("Age:" + person1age + " is in an adult group and age"+ person2age +"is in a child group.");
-		System.out.println("They cannot be a friend.");
+		System.out.println("Age:" + person1age + " is older than "+ person2age +" over 3 years. OR");
+		System.out.println("Age:" + person1age + " is in an adult group and age "+ person2age +" is in a child group.");
+		System.out.println("So they cannot be friends.");
 
 		
 		System.out.println("Error message is: " + errMsg);
@@ -37,19 +37,19 @@ public class NotToBeFriendsException extends Exception
 	{ 
 		if (person1age > 16 && person2age <= 16) 
 		{
-			throw new NotToBeFriendsException( "Person1 and Person2 cannot be a friend", person1age, person2age);
+			throw new NotToBeFriendsException( "Person1 and Person2 cannot be friends", person1age, person2age);
 		}
 		
 		if (person1age <= 16 && person2age > 16) 
 		{
-			throw new NotToBeFriendsException( "Person1 and Person2 cannot be a friend", person1age, person2age);
+			throw new NotToBeFriendsException( "Person1 and Person2 cannot be friends", person1age, person2age);
 		}
 		
 		if (person1age <= 16 && person2age <= 16)
 		{
 			if (person1age - person2age > 3 || person1age - person2age < (-3)) 
 			{
-				throw new NotToBeFriendsException( "Person1 and Person2 cannot be a friend", person1age, person2age);
+				throw new NotToBeFriendsException( "Person1 and Person2 cannot be friends", person1age, person2age);
 			}
 		}
 	}
