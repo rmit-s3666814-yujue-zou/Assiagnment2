@@ -29,7 +29,8 @@ public class NotToBeFriendsException extends Exception
 	/**
      * A method to check if the two people are available to be friends
      * 
-     * @param int person1age, person2age
+     * @param int person1age
+     * @param int person2age
      * @return
      * @throws NotToBeFriendsException
      */
