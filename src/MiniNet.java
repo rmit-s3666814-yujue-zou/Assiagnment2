@@ -846,6 +846,15 @@ public class MiniNet extends Application
 	    			//Define is one person taken
 	    			Boolean isTaken = false; 
 	    			
+	    			//Define is two people able to be friends
+	    			Boolean beFriends = false;
+	    			
+	    			//Define is two person able to be colleagues
+	    			Boolean beColleagues = false;
+	    			
+	    			//Define is two person able to be classmates
+	    			Boolean beClassmates = false;
+	    			
 	    			//Define if a person are not in this network
 	    			Boolean isPersonExisted = false;
 	    			for (int i = 0 ; i < personViewList.size(); i++ )
@@ -1042,6 +1051,33 @@ public class MiniNet extends Application
 		    				}
 	    				}
 	    				
+	    				//Be Friends
+	    				if(isPersonExisted && insertRelationship.getText().equals("friends"))
+	    				{
+	    					beFriends = true;
+	    					beFriends = beFriends(name.getText(),secondName.getText());
+	    					if (!beFriends)
+	    						isQualifiedRelationship = false;
+	    				}
+	    				
+	    				//Be Colleagues
+	    				if(isPersonExisted && insertRelationship.getText().equals("colleagues"))
+	    				{
+	    					beColleagues = true;
+	    					beColleagues = beColleagues(name.getText(),secondName.getText());
+	    					if (!beColleagues)
+	    						isQualifiedRelationship = false;
+	    				}
+	    				
+	    				//Be Classmates
+	    				if(isPersonExisted && insertRelationship.getText().equals("classmates"))
+	    				{
+	    					beClassmates = true;
+	    					beClassmates(name.getText(),secondName.getText());
+	    					if (!beClassmates)
+	    						isQualifiedRelationship = false;
+	    				}
+	    				
 		    			if (insertRelationship.getText().equals("friends") || insertRelationship.getText().equals("colleagues") || insertRelationship.getText().equals("classmates") || insertRelationship.getText().equals("couple"))
 		    			{
 			    			if ((insertRelationship.getText() != null && !insertRelationship.getText().isEmpty())) 
@@ -1063,7 +1099,17 @@ public class MiniNet extends Application
 		    			}
 	    			
 	    		}
-
+	    		
+	    		if (!beFriends && insertRelationship.getText().equals("friends"))
+	    			label.setText("Msg: These two people cannot be Friends.\n"
+	    					+ "Please check your inserted names!");
+	    		if (!beColleagues && insertRelationship.getText().equals("colleagues"))
+	    			label.setText("Msg: These two people cannot be Colleagues.\n"
+	    					+ "Please check your inserted names!");
+	    		if (!beClassmates && insertRelationship.getText().equals("classmates"))
+	    			label.setText("Msg: These two people cannot be Classmates.\n"
+	    					+ "Please check your inserted names!");
+	    		
 	    		if(!isPersonExisted)
 	    			label.setText("Msg: One of the people are not found in this \n"
 	    					+ "Network, please check your inserted names!");
@@ -1071,6 +1117,7 @@ public class MiniNet extends Application
 	    		if (isTaken)
 	    			label.setText("Msg: One of the people are taken in this \n"
 	    					+ "Network, please check your inserted names!");
+	    		
 	    		}
 	    	});
 		 
@@ -1255,7 +1302,168 @@ public class MiniNet extends Application
  		
  		return false;
  	}
-    
+
+ 	/**
+     * A method to show if the person is able to be friends
+     * 
+ 	 * @param  person1Name a String of person1's name
+ 	 * @param  person2Name a String of person2's name
+ 	 * @return Boolean is Person1 or person2 able to be friends
+     */
+ 	
+ 	public Boolean beFriends(String person1Name, String person2Name)
+ 	{
+ 		int person1age = 0;
+ 		int person2age = 0;
+ 		for(int i = 0; i < personViewList.size(); i++)	
+        {	
+ 			if (personViewList.get(i).getName().trim().equals(person1Name.trim()))
+ 			{
+ 					
+	        			System.out.println("(1)");
+	            		System.out.println("Name:" + personViewList.get(i).getName());
+	            		System.out.println("Age:" + personViewList.get(i).getAge());
+	            		person1age = personViewList.get(i).getAge();
+ 			}
+        }
+ 		
+ 		for(int j = 0; j < personViewList.size(); j++)	
+        {	
+ 			if (personViewList.get(j).getName().trim().equals(person2Name.trim()))
+ 			{
+ 					
+	        			System.out.println("(2)");
+	            		System.out.println("Name:" + personViewList.get(j).getName());
+	            		System.out.println("Age:" + personViewList.get(j).getAge());
+	            		person2age = personViewList.get(j).getAge();
+ 			}
+        }
+ 		
+		try 
+		{
+			NotToBeFriendsException ntbfException = new NotToBeFriendsException("",person1age,person2age);
+			ntbfException.validNotToBeFriends(person1age, person2age);
+		}
+		catch(NotToBeFriendsException ntbfException1)
+		{
+			System.out.println("Err Msg: Cannot be friends Exception");
+		}
+
+ 		
+ 		if (person1age > 16 && person2age > 16)
+ 			return true;
+ 		if (person1age > 2 || person2age > 2)
+ 			if((person1age - person2age) * (person1age - person2age) < 9)
+ 				return true;
+ 		
+ 		return false;
+ 	}
+ 	
+ 	/**
+     * A method to show if the person is able to be Colleagues
+     * 
+ 	 * @param  person1Name a String of person1's name
+ 	 * @param  person2Name a String of person2's name
+ 	 * @return Boolean is Person1 or person2 able to be Colleagues
+     */
+ 	
+ 	public Boolean beColleagues(String person1Name, String person2Name)
+ 	{
+ 		int person1age = 0;
+ 		int person2age = 0;
+ 		for(int i = 0; i < personViewList.size(); i++)	
+        {	
+ 			if (personViewList.get(i).getName().trim().equals(person1Name.trim()))
+ 			{
+ 					
+	        			System.out.println("(1)");
+	            		System.out.println("Name:" + personViewList.get(i).getName());
+	            		System.out.println("Age:" + personViewList.get(i).getAge());
+	            		person1age = personViewList.get(i).getAge();
+ 			}
+        }
+ 		
+ 		for(int j = 0; j < personViewList.size(); j++)	
+        {	
+ 			if (personViewList.get(j).getName().trim().equals(person2Name.trim()))
+ 			{
+ 					
+	        			System.out.println("(2)");
+	            		System.out.println("Name:" + personViewList.get(j).getName());
+	            		System.out.println("Age:" + personViewList.get(j).getAge());
+	            		person2age = personViewList.get(j).getAge();
+ 			}
+        }
+ 		
+		try 
+		{
+			NotToBeColleaguesException ntbcException = new NotToBeColleaguesException("",person1age,person2age);
+			ntbcException.validNotToBeColleagues(person1age,person2age);
+		}
+		catch(NotToBeColleaguesException ntbcException1)
+		{
+			System.out.println("Err Msg: Cannot be colleagues Exception");
+		}
+ 		
+ 		if (person1age > 16 && person2age > 16)
+ 			return true;
+ 		
+ 		return false;
+ 	}
+ 	
+ 	/**
+     * A method to show if the person is able to be Classmates
+     * 
+ 	 * @param  person1Name a String of person1's name
+ 	 * @param  person2Name a String of person2's name
+ 	 * @return Boolean is Person1 or person2 able to be Classmates
+     */
+ 	
+ 	public Boolean beClassmates(String person1Name, String person2Name)
+ 	{
+ 		int person1age = 0;
+ 		int person2age = 0;
+ 		for(int i = 0; i < personViewList.size(); i++)	
+        {	
+ 			if (personViewList.get(i).getName().trim().equals(person1Name.trim()))
+ 			{
+ 					
+	        			System.out.println("(1)");
+	            		System.out.println("Name:" + personViewList.get(i).getName());
+	            		System.out.println("Age:" + personViewList.get(i).getAge());
+	            		person1age = personViewList.get(i).getAge();
+ 			}
+        }
+ 		
+ 		for(int j = 0; j < personViewList.size(); j++)	
+        {	
+ 			if (personViewList.get(j).getName().trim().equals(person2Name.trim()))
+ 			{
+ 					
+	        			System.out.println("(2)");
+	            		System.out.println("Name:" + personViewList.get(j).getName());
+	            		System.out.println("Age:" + personViewList.get(j).getAge());
+	            		person2age = personViewList.get(j).getAge();
+ 			}
+        }
+ 		
+		try 
+		{
+			NotToBeClassmatesException ntbclException = new NotToBeClassmatesException("",person1age,person2age);
+			ntbclException.validNotToBeClassmates(person1age,person2age);
+		}
+		catch(NotToBeClassmatesException ntbclException1)
+		{
+			System.out.println("Err Msg: Cannot be classmates Exception");
+			return false;
+		}
+ 		
+ 		if (person1age > 2 && person2age > 2)
+ 			return true;
+ 		
+ 		return false;
+ 	}
+ 	
     /**
      * Main function that opens the "MiniNet" window
      * 
