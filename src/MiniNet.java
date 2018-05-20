@@ -53,7 +53,7 @@ public class MiniNet extends Application
         peopleDao.loadPeopleFile();
 
         //Loading data from database
-    //peopleDao.readfile();
+        //peopleDao.readFromDB();
     		
     	personViewList = peopleDao.getResultList();
     	relationshipDao.loadRelationshipFile();

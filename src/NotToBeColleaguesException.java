@@ -1,9 +1,19 @@
 /**
  * Class used to check and catch NotToBeColleaguesException
+ * 
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 21/05/2018
  */
 public class NotToBeColleaguesException extends Exception
  {
  	
+	/**
+	 * This is a Constructor
+	 * 
+	 * @param errMsg
+	 * @param person1age
+	 * @param person2age
+	 */
  	public NotToBeColleaguesException(String errMsg, int person1age, int person2age) 
  	{
  		super(errMsg); 
@@ -12,8 +22,14 @@ public class NotToBeColleaguesException extends Exception
  		System.out.println("Error message is: " + errMsg);
  	} 
 
- //The withdraw() method in class Account can be re-defined accordingly:
 
+	/**
+     * A method to check if the two adults are available to be colleagues
+     * 
+     * @param int person1age, int person2age
+     * @return
+     * @throws NotToBeColleaguesException
+     */
  	public void validNotToBeColleagues(int person1age, int person2age) throws NotToBeColleaguesException 
  	{ 
  		//person1 is not an adult

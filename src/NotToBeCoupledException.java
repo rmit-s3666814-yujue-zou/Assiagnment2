@@ -1,9 +1,18 @@
 /**
  * Class used to check and catch NotToBeCoupledException
+ * 
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 21/05/2018
  */
 public class NotToBeCoupledException extends Exception
 {
-	
+	/**
+	 * This is a Contructor
+	 * 
+	 * @param errMsg
+	 * @param person1age
+	 * @param person2age
+	 */
 	public NotToBeCoupledException(String errMsg, int person1age, int person2age) 
 	{
 		super(errMsg); 
@@ -13,8 +22,14 @@ public class NotToBeCoupledException extends Exception
 //		System.out.println("Error message is: " + errMsg);
 	} 
 
-//The withdraw() method in class Account can be re-defined accordingly:
 
+	/**
+     * A method to check if the two adults are available to be coupled
+     * 
+     * @param int person1age, int person2age
+     * @return
+     * @throws NotToBeCoupledException
+     */
 	public void validNotToBeCoupled(int person1age, int person2age) throws NotToBeCoupledException 
 	{ 
 		//person1 is not an adult
