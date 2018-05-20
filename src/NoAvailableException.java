@@ -1,9 +1,19 @@
 /**
  * Class used to check and catch NoAvailableException
+ * 
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 21/05/2018
  */
+
 public class NoAvailableException extends Exception
 {
-	
+	/**
+	 * This is a Constructor.
+	 * 
+	 * @param errMsg
+	 * @param adult1
+	 * @param adult2
+	 */
 	public NoAvailableException(String errMsg, Adults adult1, Adults adult2) 
 	{
 		super(errMsg); 
@@ -13,8 +23,13 @@ public class NoAvailableException extends Exception
 		System.out.println("Error message is: " + errMsg);
 	} 
 
-//The withdraw() method in class Account can be re-defined accordingly:
-
+	/**
+     * A method to check if the two adults are available to be coupled
+     * 
+     * @param Adults1, Adults2
+     * @return
+     * @throws NoAvailableException
+     */
 	public void validNoAvailable(Adults adult1, Adults adult2) throws NoAvailableException 
 	{ 
 		//adult2's relationship is couple

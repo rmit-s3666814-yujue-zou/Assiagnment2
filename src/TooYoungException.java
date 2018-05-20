@@ -1,10 +1,18 @@
 /**
  * Class used to check and catch TooYoungException
+ * 
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 21/05/2018
  */
 
 public class TooYoungException extends Exception
 {
-	
+	/**
+	 * This is a Constructor
+	 * 
+	 * @param errMsg
+	 * @param age
+	 */
 	public TooYoungException(String errMsg, int age) 
 	{
 		super(errMsg); 
@@ -13,7 +21,13 @@ public class TooYoungException extends Exception
 		//System.out.println("Error message is: " + errMsg);
 	} 
 
-//The withdraw() method in class Account can be re-defined accordingly:
+	/**
+     * A method to check if the two infants are not available to have friends
+     * 
+     * @param age
+     * @return
+     * @throws TooYoungException
+     */
 
 	public void validTooYoung(int age) throws TooYoungException 
 	{ 

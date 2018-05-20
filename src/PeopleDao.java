@@ -64,11 +64,11 @@ import java.io.*;
         catch(FileNotFoundException exception)
         {
             System.out.println(fileName + " not found");
-            readfile();
+            readFromDB();
         }
         catch(IOException e){
             System.out.println("Error: Invalid file");
-            readfile();
+            readFromDB();
         }
     }
 
@@ -100,7 +100,7 @@ import java.io.*;
      * @throws SQLException if there is a SQL error
      * @throws ClassNotFoundException while exception there is no class found
      */
- 	public void readfile() 
+ 	public void readFromDB() 
  	{
  		Server hsqlServer = null;
  		Connection connection = null;

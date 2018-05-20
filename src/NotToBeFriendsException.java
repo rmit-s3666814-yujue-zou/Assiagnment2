@@ -1,9 +1,18 @@
 /**
  * Class used to check and catch NotToBeFriendsException
+ * 
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 21/05/2018
  */
 public class NotToBeFriendsException extends Exception
 {
-	
+	/**
+	 * This is a Constructor
+	 * 
+	 * @param errMsg
+	 * @param person1age
+	 * @param person2age
+	 */
 	public NotToBeFriendsException(String errMsg, int person1age, int person2age) 
 	{
 		super(errMsg); 
@@ -16,8 +25,14 @@ public class NotToBeFriendsException extends Exception
 		System.out.println("Error message is: " + errMsg);
 	} 
 
-//The withdraw() method in class Account can be re-defined accordingly:
 
+	/**
+     * A method to check if the two people are available to be friends
+     * 
+     * @param int person1age, person2age
+     * @return
+     * @throws NotToBeFriendsException
+     */
 	public void validNotToBeFriends(int person1age, int person2age) throws NotToBeFriendsException 
 	{ 
 		if (person1age > 16 && person2age <= 16) 

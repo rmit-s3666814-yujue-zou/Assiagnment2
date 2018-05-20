@@ -1,14 +1,24 @@
 /**
  * Class used to check and catch NoSuchAgeException
+ * 
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 21/05/2018
  */
 public class NoSuchAgeException extends Exception
 {
-	
+	/**
+	 * This is a default Constructor
+	 */
 	public NoSuchAgeException() 
 	{
 		super();
 	} 
-	
+	/**
+	 * This is a Constructor
+	 * 
+	 * @param errMsg
+	 * @param personAge
+	 */
 	public NoSuchAgeException(String errMsg, int personAge) 
 	{
 		super(errMsg); 
@@ -18,8 +28,14 @@ public class NoSuchAgeException extends Exception
 		//System.out.println("Error message is: " + errMsg);
 	} 
 
-//The validNotSuchAge() method in class MiniNet can be re-defined accordingly:
 
+	/**
+     * A method to check if a person can be added into this network, condition: their age between 0 - 150.
+     * 
+     * @param int personAge
+     * @return
+     * @throws NoSuchAgeException
+     */
 	public void validNotSuchAge(int personAge) throws NoSuchAgeException 
 	{ 
 		//person's age is negative

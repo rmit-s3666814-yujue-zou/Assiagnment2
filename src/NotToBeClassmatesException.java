@@ -1,11 +1,21 @@
 /**
  * Class used to check and catch NotToBeClassmatesException
+ * 
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 21/05/2018
  */
 
 
 public class NotToBeClassmatesException extends Exception 
- {
- 	
+{
+
+	/**
+	 * This is a Constructor
+	 * 
+	 * @param errMsg
+	 * @param person1Age
+	 * @param person2Age
+	 */
  	public NotToBeClassmatesException(String errMsg, int person1Age, int person2Age) 
  	{
  		super(errMsg); 
@@ -14,8 +24,14 @@ public class NotToBeClassmatesException extends Exception
  		System.out.println("Error message is: " + errMsg);
  	} 
 
- //The withdraw() method in class Account can be re-defined accordingly:
 
+	/**
+     * A method to check if the two people are available to be classmates
+     * 
+     * @param int person1Age, int person2Age
+     * @return
+     * @throws NotToBeClassmatesException
+     */
  	public void validNotToBeClassmates(int person1Age, int person2Age) throws NotToBeClassmatesException 
  	{ 
  		//person1 is not an adult or child

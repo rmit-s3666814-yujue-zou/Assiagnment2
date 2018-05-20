@@ -1,10 +1,19 @@
 /**
  * Class used to check and catch NoParentException
+ * 
+ * @author Jyh-woei Yang, Yujue Zou
+ * @version 21/05/2018
  */
 
 public class NoParentException extends Exception
 {
-	
+	/**
+	 * This is a Constructor
+	 * 
+	 * @param errMsg
+	 * @param adult1
+	 * @param adult2
+	 */
 	public NoParentException(String errMsg, Adults adult1, Adults adult2) 
 	{
 		super(errMsg); 
@@ -14,8 +23,13 @@ public class NoParentException extends Exception
 		System.out.println("Error message is: " + errMsg);
 	} 
 
-//The withdraw() method in class Account can be re-defined accordingly:
-
+	/**
+     * A method to check if the child are available to add their parents
+     * 
+     * @param Adults1, Adults2
+     * @return
+     * @throws NoParentException
+     */
 	public void validNoParent(Adults adult1, Adults adult2) throws NoParentException 
 	{ 
 		if (adult1 == null) 
