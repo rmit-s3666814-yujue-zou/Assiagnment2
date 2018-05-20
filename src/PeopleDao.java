@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.SQLSyntaxErrorException;
 
 import org.hsqldb.Server;
 
@@ -127,33 +128,54 @@ import java.io.*;
  			connection.prepareStatement(addPeople("Hannah White","Hannah.png","14","F","Student at PLC","VIC")).execute();
  			connection.prepareStatement(addPeople("Zoe Foster","N/A","28","F","Founder of ZFX","VIC")).execute();
  			connection.prepareStatement(addPeople("Mark Turner","Mark.jpeg","2","M","N/A","VIC")).execute();
+ 			connection.prepareStatement(addPeople("Susan Turner","Susan.png","14","F","Student at PLC","VIC")).execute();
+ 			
+ 			// set a flag to count how many people in this network.
+ 			int dataNumber = 7;
  			
  			//query from the db
  			rs = connection.prepareStatement("select name,photopath,age,gender,status,ausstates from people;").executeQuery();
- 			rs.next();
- 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
- 			rs.next();
- 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
- 			rs.next();
- 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
- 			rs.next();
- 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
- 			rs.next();
- 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
- 			rs.next();
- 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
- 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
- 			System.out.println(rs.getString(1));
+ 			for (int i = 0 ; i < dataNumber ; i++)
+ 			{
+	 			rs.next();
+	 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+	 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+ 			}
+ 			
+//			rs.next(); 			
+// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+// 			rs.next();
+// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+// 			rs.next();
+// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+// 			rs.next();
+// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+// 			rs.next();
+// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+// 			System.out.println(rs.getString(1));
+// 			rs.next();
+// 			System.out.println(String.format("Name: %1s, Photopath: %1s, Age: %1s, Gender: %1s, Status: %1s, AusStates: %1s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+// 			addToResultList(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+// 			System.out.println(rs.getString(1));
+ 			
  			connection.commit();
+ 		}catch (SQLSyntaxErrorException e2) {
+			e2.printStackTrace();
+	        System.out.println("8) Exit, because of SQLSyntaxErrorException");
+	    		System.exit(0);
  		}catch (SQLException e2){
  			e2.printStackTrace();
+            System.out.println("8) Exit");
+        		System.exit(0);
  		}catch (ClassNotFoundException e2){
  			e2.printStackTrace();
+            System.out.println("8) Exit");
+            System.exit(0);
  		}
 
  	}
