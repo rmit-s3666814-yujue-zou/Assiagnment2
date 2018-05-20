@@ -8,6 +8,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import org.hsqldb.HsqlException;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -433,7 +434,9 @@ public class MiniNet extends Application
 		    	        }
 		    			catch(NoSuchAgeException nsaException)
 		    			{
-		    				label.setText("Error message");
+		    				label.setText("Error message: No Such Age Exception,\n"
+		    						+ "you have to enter a age of person between\n"
+		    						+ "0 - 150.");
 		    			}
 	    	        }
 	    	     
