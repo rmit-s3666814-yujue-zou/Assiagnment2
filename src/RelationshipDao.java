@@ -2,7 +2,7 @@
  * Write a description of class RelationshipDao here.
  *
  * @author Jyh-woei Yang, Yujue Zou
- * @version 16/05/2018
+ * @version 21/05/2018
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -110,9 +110,9 @@ public class RelationshipDao {
             }
                 outputFile.close();    
             }
-            catch(IOException exception)
-            {
-                System.out.println("Unexpected I/O error occured");
-            }
+        catch(IOException exception)
+        {
+            System.out.println("Unexpected I/O error occured");
         }
     }
+}
