@@ -8,9 +8,9 @@ public class NotToBeCoupledException extends Exception
 	{
 		super(errMsg); 
 
-		System.out.println("You are trying to make a couple when at least one member is not an\n" + 
-				"adult.");		
-		System.out.println("Error message is: " + errMsg);
+//		System.out.println("You are trying to make a couple when at least one member is not an\n" + 
+//				"adult.");		
+//		System.out.println("Error message is: " + errMsg);
 	} 
 
 //The withdraw() method in class Account can be re-defined accordingly:

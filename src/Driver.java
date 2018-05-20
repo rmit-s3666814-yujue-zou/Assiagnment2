@@ -154,7 +154,7 @@ import java.util.ArrayList;
  		person1.setName(Person1);
  		Person person2 = new Person();
  		person2.setName(Person2);
- 		relationship = "friends";
+ 		//default relationship = "friends";
  		Relationship insertRelationship = new Relationship(person1, person2, relationship);
  		relationshipDriverList.add(insertRelationship);
  		return getRelationshipDriverList();
@@ -265,4 +265,5 @@ import java.util.ArrayList;
  		}
  		return myChildrenString;
  	}
+ 	
  } 
