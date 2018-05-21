@@ -9,5 +9,5 @@ Susan Turner,Ben Turner,father
 Susan Turner,Zoe Foster,mother
 Ben Turner,Susan Turner,child
 Zoe Foster,Susan Turner,child
-Carson Green,Ben Turner,colleague
-Hannah White,Susan Turner,classmate
+Carson Green,Ben Turner,colleagues
+Hannah White,Susan Turner,classmates
