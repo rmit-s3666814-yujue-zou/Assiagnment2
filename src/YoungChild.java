@@ -1,7 +1,7 @@
 /**
  * Write a description of class YoungChild here.
  * YoungChild (2 year old or younger) is a type of person. 
- * Each person has a “profile” in the social network.
+ * Each person has a "profile" in the social network.
  * Their profiles records their age, gender, status.
  *
  * @author Jyh-woei Yang
